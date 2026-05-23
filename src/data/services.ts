@@ -1,7 +1,6 @@
 export const STAGES = {
   INTRO: 0,
   MENU: 1,
-  TRANSITION: 3,
   SERVICE_DETAIL: 2
 };
 
@@ -25,7 +24,7 @@ export const SERVICES: Service[] = [
     subtitle: 'Cellular Renewal',
     desc: 'Deep cellular regeneration using advanced peptides and micro-currents. A complete reset for your skin architecture.',
     video: 'https://assets.mixkit.co/videos/preview/mixkit-woman-applying-cream-on-her-face-41373-large.mp4',
-    transition: '/videos/transition1.mp4',
+    transition: 'https://res.cloudinary.com/dfh97tdty/video/upload/v1779519696/transition1_qhqff4.mp4',
     price: '2,500 CZK',
     time: '90 min',
     position: [-10, 0, -10],
@@ -37,7 +36,7 @@ export const SERVICES: Service[] = [
     subtitle: 'Lymphatic Drainage',
     desc: 'Precision sculpting and deep tissue release. Restores natural flow and contours the body silhouette.',
     video: 'https://assets.mixkit.co/videos/preview/mixkit-hands-massaging-a-persons-back-22963-large.mp4',
-    transition: '/videos/transition2.mp4',
+    transition: 'https://res.cloudinary.com/dfh97tdty/video/upload/v1779519696/transition2_blfbpu.mp4',
     price: '1,800 CZK',
     time: '60 min',
     position: [10, 0, -10],
@@ -49,7 +48,7 @@ export const SERVICES: Service[] = [
     subtitle: 'Sensory Journey',
     desc: 'Immersive sensory experiences using rare botanical extracts and flowing textures to melt away tension.',
     video: 'https://assets.mixkit.co/videos/preview/mixkit-pouring-water-in-a-bucket-with-flowers-33214-large.mp4',
-    transition: '/videos/transition3.mp4',
+    transition: 'https://res.cloudinary.com/dfh97tdty/video/upload/v1779519696/transition3_piptgz.mp4',
     price: '3,200 CZK',
     time: '120 min',
     position: [-10, 0, 10],
@@ -61,7 +60,7 @@ export const SERVICES: Service[] = [
     subtitle: 'Precision Resurfacing',
     desc: 'Advanced light therapy for flawless texture, targeting pigmentation and stimulating deep collagen production.',
     video: 'https://assets.mixkit.co/videos/preview/mixkit-beautician-treating-the-face-of-a-patient-42635-large.mp4',
-    transition: '/videos/transition4.mp4',
+    transition: 'https://res.cloudinary.com/dfh97tdty/video/upload/v1779519696/transition4_jxhdml.mp4',
     price: '4,500 CZK',
     time: '45 min',
     position: [10, 0, 10],
@@ -73,7 +72,7 @@ export const SERVICES: Service[] = [
     subtitle: 'Ethereal Glow',
     desc: 'Custom-blended acids to gently dissolve impurities, revealing an impossibly smooth, glass-like complexion.',
     video: 'https://assets.mixkit.co/videos/preview/mixkit-dripping-essential-oil-into-a-small-bottle-43420-large.mp4',
-    transition: '/videos/transition5.mp4',
+    transition: 'https://res.cloudinary.com/dfh97tdty/video/upload/v1779519697/transition5_euaced.mp4',
     price: '2,100 CZK',
     time: '60 min',
     position: [0, 0, -15],
