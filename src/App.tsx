@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { STAGES, SERVICES } from './data/services';
 import type { Service } from './data/services';
@@ -10,14 +10,18 @@ export default function App() {
   const [stage, setStage] = useState(STAGES.INTRO);
   const [activeService, setActiveService] = useState<Service | null>(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [showTransition, setShowTransition] = useState(false);
+  const [transitionUrl, setTransitionUrl] = useState('');
+
+  const showCard = useCallback(() => {
+    setShowTransition(false);
+    setStage(STAGES.SERVICE_DETAIL);
+  }, []);
 
   const handleServiceClick = (service: Service) => {
     setActiveService(service);
-    setIsTransitioning(true);
-    setTimeout(() => {
-      setStage(STAGES.SERVICE_DETAIL);
-      setIsTransitioning(false);
-    }, 600);
+    setTransitionUrl(service.transition);
+    setShowTransition(true);
   };
 
   const handleBack = () => {
@@ -72,7 +76,7 @@ export default function App() {
       {/* ФОНОВОЕ ВИДЕО */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: stage === STAGES.MENU ? 1 : 0 }}
+        animate={{ opacity: stage === STAGES.MENU && !showTransition ? 1 : 0 }}
         transition={{ duration: 2 }}
         className="absolute inset-0 z-[1] pointer-events-none"
       >
@@ -81,6 +85,21 @@ export default function App() {
         </video>
         <div className="absolute inset-0 bg-black/72" />
       </motion.div>
+
+      {/* ВИДЕО-ПЕРЕХОД */}
+      <AnimatePresence>
+        {showTransition && transitionUrl && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="absolute inset-0 z-[20] pointer-events-none"
+          >
+            <TransitionVideo url={transitionUrl} onEnded={showCard} />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* UI */}
       <div className="absolute inset-0 z-10 pointer-events-none">
@@ -118,19 +137,16 @@ export default function App() {
             </motion.div>
           )}
 
-          {stage === STAGES.MENU && !isTransitioning && (
+          {stage === STAGES.MENU && !isTransitioning && !showTransition && (
             <motion.div key="menu" initial={{ opacity: 0 }} animate={{ opacity: 1 }}
               exit={{ opacity: 0 }} transition={{ duration: 0.8 }}
               className="absolute inset-0 pointer-events-auto"
             >
-              {/* Mobile */}
               <div className="flex md:hidden flex-col items-center justify-center h-full gap-6 px-4">
                 {SERVICES.map((srv) => (
                   <MenuButton key={srv.id} service={srv} onClick={() => handleServiceClick(srv)} />
                 ))}
               </div>
-
-              {/* Desktop */}
               <div className="hidden md:block w-full h-full">
                 <div className="absolute top-[18%] left-[8%]">
                   <MenuButton service={SERVICES[0]} onClick={() => handleServiceClick(SERVICES[0])} />
@@ -158,5 +174,27 @@ export default function App() {
         </AnimatePresence>
       </div>
     </div>
+  );
+}
+
+// Отдельный компонент — монтируется заново при каждом показе
+function TransitionVideo({ url, onEnded }: { url: string; onEnded: () => void }) {
+  const ref = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = ref.current;
+    if (!video) return;
+    video.play().catch(() => onEnded());
+  }, [onEnded]);
+
+  return (
+    <video
+      ref={ref}
+      src={url}
+      muted
+      playsInline
+      onEnded={onEnded}
+      className="w-full h-full object-cover"
+    />
   );
 }
