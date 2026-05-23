@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { STAGES, SERVICES } from './data/services';
 import type { Service } from './data/services';
@@ -10,20 +10,14 @@ export default function App() {
   const [stage, setStage] = useState(STAGES.INTRO);
   const [activeService, setActiveService] = useState<Service | null>(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [showTransition, setShowTransition] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
 
   const handleServiceClick = (service: Service) => {
     setActiveService(service);
-    setShowTransition(true); // показываем видео-переход
-  };
-
-  // когда видео заканчивается — показываем карточку
-  const handleTransitionEnd = () => {
-    setShowTransition(false);
     setIsTransitioning(true);
-    setStage(STAGES.SERVICE_DETAIL);
-    setTimeout(() => setIsTransitioning(false), 800);
+    setTimeout(() => {
+      setStage(STAGES.SERVICE_DETAIL);
+      setIsTransitioning(false);
+    }, 600);
   };
 
   const handleBack = () => {
@@ -32,16 +26,8 @@ export default function App() {
     setTimeout(() => {
       setActiveService(null);
       setIsTransitioning(false);
-    }, 1000);
+    }, 600);
   };
-
-  // запускаем видео когда оно появляется
-  useEffect(() => {
-    if (showTransition && videoRef.current) {
-      videoRef.current.currentTime = 0;
-      videoRef.current.play();
-    }
-  }, [showTransition, activeService]);
 
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
@@ -83,7 +69,7 @@ export default function App() {
         <ThreeScene stage={stage} activeService={activeService} isTransitioning={isTransitioning} onServiceClick={handleServiceClick} />
       </div>
 
-      {/* ФОНОВОЕ ВИДЕО — появляется в меню */}
+      {/* ФОНОВОЕ ВИДЕО */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: stage === STAGES.MENU ? 1 : 0 }}
@@ -96,31 +82,6 @@ export default function App() {
         <div className="absolute inset-0 bg-black/72" />
       </motion.div>
 
-      {/* ВИДЕО-ПЕРЕХОД при выборе услуги */}
-      <AnimatePresence>
-        {showTransition && activeService && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
-            className="absolute inset-0 z-[20] pointer-events-none"
-          >
-            <video
-              ref={videoRef}
-              muted
-              playsInline
-              onEnded={handleTransitionEnd}
-              className="w-full h-full object-cover"
-            >
-              <source src={activeService.transition} type="video/mp4" />
-            </video>
-            {/* лёгкое затемнение по краям */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20 pointer-events-none" />
-          </motion.div>
-        )}
-      </AnimatePresence>
-
       {/* UI */}
       <div className="absolute inset-0 z-10 pointer-events-none">
 
@@ -131,7 +92,6 @@ export default function App() {
 
         <AnimatePresence mode="wait">
 
-          {/* INTRO */}
           {stage === STAGES.INTRO && (
             <motion.div
               key="intro"
@@ -158,8 +118,7 @@ export default function App() {
             </motion.div>
           )}
 
-          {/* MENU */}
-          {stage === STAGES.MENU && !isTransitioning && !showTransition && (
+          {stage === STAGES.MENU && !isTransitioning && (
             <motion.div key="menu" initial={{ opacity: 0 }} animate={{ opacity: 1 }}
               exit={{ opacity: 0 }} transition={{ duration: 0.8 }}
               className="absolute inset-0 pointer-events-auto"
@@ -192,7 +151,6 @@ export default function App() {
             </motion.div>
           )}
 
-          {/* SERVICE DETAIL */}
           {stage === STAGES.SERVICE_DETAIL && activeService && !isTransitioning && (
             <ServiceDetail key="detail" activeService={activeService} onBack={handleBack} />
           )}
