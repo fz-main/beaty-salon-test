@@ -88,20 +88,15 @@ export default function App() {
           <video autoPlay muted loop playsInline className="w-full h-full object-cover object-top">
             <source src="https://res.cloudinary.com/dfh97tdty/video/upload/v1779623634/8956058-uhd_3840_2160_24fps_1_orgyze.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-black/55" />
+          <div className="absolute inset-0 bg-black/75" />
         </div>
       )}
 
-      {/* ФОНОВОЕ ВИДЕО ПЕРЕХОДА — остаётся на месте, паузится на последнем кадре */}
-      {bgVideoUrl && (
+      {/* ФОНОВОЕ ВИДЕО ПЕРЕХОДА — паузится на последнем кадре за карточкой */}
+      {bgVideoUrl && stage === STAGES.SERVICE_DETAIL && (
         <div
-          className="absolute inset-0 z-[2] pointer-events-none"
-          style={{
-            opacity: showTransition ? 0 : 1,
-            filter: showTransition ? 'none' : 'blur(20px)',
-            transform: 'scale(1.15)',
-            transition: 'filter 0.5s ease, opacity 0.5s ease'
-          }}
+          className="absolute inset-0 z-[2] pointer-events-none overflow-hidden"
+          style={{ transform: 'scale(1.15)' }}
         >
           <video
             ref={bgVideoRef}
@@ -109,6 +104,7 @@ export default function App() {
             muted
             playsInline
             className="w-full h-full object-cover"
+            style={{ filter: 'blur(20px)' }}
           />
           <div className="absolute inset-0 bg-black/70" />
         </div>

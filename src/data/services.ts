@@ -35,7 +35,7 @@ export const SERVICES: Service[] = [
     title: 'Body Sculpt',
     subtitle: 'Lymphatic Drainage',
     desc: 'Precision sculpting and deep tissue release. Restores natural flow and contours the body silhouette.',
-    video: 'https://res.cloudinary.com/dfh97tdty/video/upload/v1779635467/fefba50b4ae23a4f1addb6ffe426ef86_720w_nej3zd.mp4',
+    video: 'https://res.cloudinary.com/dfh97tdty/video/upload/v1779640822/First-Person_POV_Video_A_man_with_dark_hair_and_a_light_complexion_S1g9qRMo_otd8mv.mp4',
     transition: '/beaty-salon-test/videos/transition2.mp4',
     price: '1,800 CZK',
     time: '60 min',

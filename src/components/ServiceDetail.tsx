@@ -63,7 +63,7 @@ export default function ServiceDetail({ activeService, onBack }: ServiceDetailPr
           initial={{ opacity: 0, scale: 0.9, filter: 'blur(20px)' }}
           animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
           transition={{ duration: 1, delay: 0.4 }}
-          className="w-full aspect-square md:aspect-[3/4] rounded-3xl overflow-hidden relative shadow-2xl order-1 md:order-2"
+          className="w-full aspect-square md:aspect-[3/4] rounded-[2rem] overflow-hidden relative shadow-2xl order-1 md:order-2"
         >
           <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover scale-105">
             <source src={activeService.video} type="video/mp4" />
