@@ -17,8 +17,12 @@ export default function App() {
 
   const showCard = useCallback(() => {
     setShowTransition(false);
-    // пауза на последнем кадре
-    if (bgVideoRef.current) bgVideoRef.current.pause();
+    // перематываем в конец и паузим
+    if (bgVideoRef.current) {
+      const v = bgVideoRef.current;
+      v.currentTime = v.duration || 99999;
+      v.pause();
+    }
     setStage(STAGES.SERVICE_DETAIL);
   }, []);
 
