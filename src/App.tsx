@@ -87,7 +87,7 @@ export default function App() {
         className="absolute inset-0 z-[1] pointer-events-none"
       >
         <video autoPlay muted loop playsInline className="w-full h-full object-cover object-top">
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-close-up-of-a-womans-face-with-closed-eyes-and-glitter-39487-large.mp4" type="video/mp4" />
+          <source src="https://res.cloudinary.com/dfh97tdty/video/upload/v1779623634/8956058-uhd_3840_2160_24fps_1_orgyze.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-black/55" />
       </motion.div>
