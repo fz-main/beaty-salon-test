@@ -12,37 +12,26 @@ export default function App() {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [showTransition, setShowTransition] = useState(false);
   const [transitionUrl, setTransitionUrl] = useState('');
-  const [frozenFrame, setFrozenFrame] = useState<string>('');
+  const [bgVideoUrl, setBgVideoUrl] = useState('');
+  const bgVideoRef = useRef<HTMLVideoElement>(null);
 
-  const captureFrame = useCallback((video: HTMLVideoElement) => {
-    try {
-      const canvas = document.createElement('canvas');
-      canvas.width = video.videoWidth || 1920;
-      canvas.height = video.videoHeight || 1080;
-      const ctx = canvas.getContext('2d');
-      if (ctx) {
-        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-        setFrozenFrame(canvas.toDataURL('image/jpeg', 0.85));
-      }
-    } catch {}
-  }, []);
-
-  const showCard = useCallback((video?: HTMLVideoElement) => {
-    if (video) captureFrame(video);
+  const showCard = useCallback(() => {
     setShowTransition(false);
+    // пауза на последнем кадре
+    if (bgVideoRef.current) bgVideoRef.current.pause();
     setStage(STAGES.SERVICE_DETAIL);
-  }, [captureFrame]);
+  }, []);
 
   const handleServiceClick = (service: Service) => {
     setActiveService(service);
     setTransitionUrl(service.transition);
-    setFrozenFrame('');
+    setBgVideoUrl(service.transition);
     setShowTransition(true);
   };
 
   const handleBack = () => {
     setIsTransitioning(true);
-    setFrozenFrame('');
+    setBgVideoUrl('');
     setStage(STAGES.MENU);
     setTimeout(() => {
       setActiveService(null);
@@ -90,7 +79,7 @@ export default function App() {
         <ThreeScene stage={stage} activeService={activeService} isTransitioning={isTransitioning} onServiceClick={handleServiceClick} />
       </div>
 
-      {/* ФОНОВОЕ ВИДЕО МЕНЮ — очень сильно затемнено */}
+      {/* ДЕВУШКА — фон меню */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: stage === STAGES.MENU && !showTransition ? 1 : 0 }}
@@ -103,7 +92,29 @@ export default function App() {
         <div className="absolute inset-0 bg-black/55" />
       </motion.div>
 
-      {/* ВИДЕО-ПЕРЕХОД */}
+      {/* ФОНОВОЕ ВИДЕО ПЕРЕХОДА — остаётся на месте, паузится на последнем кадре */}
+      {bgVideoUrl && (
+        <div
+          className="absolute inset-0 z-[2] pointer-events-none"
+          style={{
+            opacity: showTransition ? 0 : 1,
+            filter: showTransition ? 'none' : 'blur(20px)',
+            transform: 'scale(1.15)',
+            transition: 'filter 0.5s ease, opacity 0.5s ease'
+          }}
+        >
+          <video
+            ref={bgVideoRef}
+            src={bgVideoUrl}
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/70" />
+        </div>
+      )}
+
+      {/* ВИДЕО-ПЕРЕХОД (поверх) */}
       <AnimatePresence>
         {showTransition && transitionUrl && (
           <motion.div
@@ -113,14 +124,13 @@ export default function App() {
             transition={{ duration: 0.3 }}
             className="absolute inset-0 z-[20] pointer-events-none"
           >
-            <TransitionVideo url={transitionUrl} onEnded={showCard} />
+            <TransitionVideo url={transitionUrl} onEnded={showCard} bgVideoRef={bgVideoRef} />
           </motion.div>
         )}
       </AnimatePresence>
 
       {/* UI */}
       <div className="absolute inset-0 z-10 pointer-events-none">
-
         <header className="absolute top-0 left-0 w-full px-6 py-5 md:px-8 md:py-8 flex justify-between items-center z-50 mix-blend-difference">
           <div className="font-monument text-[10px] md:text-xs tracking-[0.2em]">Kosmetika Nebeská</div>
           <div className="font-montreal text-[10px] md:text-xs uppercase tracking-widest">Prague</div>
@@ -129,8 +139,7 @@ export default function App() {
         <AnimatePresence mode="wait">
 
           {stage === STAGES.INTRO && (
-            <motion.div
-              key="intro"
+            <motion.div key="intro"
               exit={{ opacity: 0, filter: 'blur(20px)', scale: 1.1 }}
               transition={{ duration: 1.5, ease: 'easeInOut' }}
               className="absolute inset-0 flex flex-col items-center justify-center px-4"
@@ -185,12 +194,7 @@ export default function App() {
           )}
 
           {stage === STAGES.SERVICE_DETAIL && activeService && !isTransitioning && (
-            <ServiceDetail
-              key="detail"
-              activeService={activeService}
-              onBack={handleBack}
-              frozenFrame={frozenFrame}
-            />
+            <ServiceDetail key="detail" activeService={activeService} onBack={handleBack} />
           )}
 
         </AnimatePresence>
@@ -199,14 +203,30 @@ export default function App() {
   );
 }
 
-function TransitionVideo({ url, onEnded }: { url: string; onEnded: (v: HTMLVideoElement) => void }) {
+function TransitionVideo({ url, onEnded, bgVideoRef }: {
+  url: string;
+  onEnded: () => void;
+  bgVideoRef: React.RefObject<HTMLVideoElement | null>;
+}) {
   const ref = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const video = ref.current;
     if (!video) return;
-    video.play().catch(() => onEnded(video));
-  }, [onEnded]);
+    // синхронизируем фоновое видео
+    if (bgVideoRef.current) {
+      bgVideoRef.current.currentTime = 0;
+      bgVideoRef.current.play().catch(() => {});
+    }
+    video.play().catch(() => onEnded());
+  }, [onEnded, bgVideoRef]);
+
+  // синхронизируем позицию фонового видео с переходным
+  const handleTimeUpdate = () => {
+    if (ref.current && bgVideoRef.current) {
+      bgVideoRef.current.currentTime = ref.current.currentTime;
+    }
+  };
 
   return (
     <video
@@ -214,7 +234,8 @@ function TransitionVideo({ url, onEnded }: { url: string; onEnded: (v: HTMLVideo
       src={url}
       muted
       playsInline
-      onEnded={(e) => onEnded(e.currentTarget)}
+      onEnded={onEnded}
+      onTimeUpdate={handleTimeUpdate}
       className="w-full h-full object-cover"
     />
   );

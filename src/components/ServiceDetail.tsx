@@ -4,10 +4,9 @@ import type { Service } from '../data/services';
 interface ServiceDetailProps {
   activeService: Service;
   onBack: () => void;
-  frozenFrame?: string;
 }
 
-export default function ServiceDetail({ activeService, onBack, frozenFrame }: ServiceDetailProps) {
+export default function ServiceDetail({ activeService, onBack }: ServiceDetailProps) {
   return (
     <motion.div
       key="detail"
@@ -17,20 +16,6 @@ export default function ServiceDetail({ activeService, onBack, frozenFrame }: Se
       transition={{ duration: 0.8 }}
       className="absolute inset-0 pointer-events-auto flex items-center justify-center p-6 md:p-24"
     >
-      {/* Замороженный последний кадр перехода — размытый фон */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        {frozenFrame ? (
-          <img
-            src={frozenFrame}
-            className="w-full h-full object-cover scale-110"
-            style={{ filter: 'blur(20px)', transform: 'scale(1.15)' }}
-          />
-        ) : (
-          <div className="w-full h-full bg-[#0a0a0a]" />
-        )}
-        <div className="absolute inset-0 bg-black/75" />
-      </div>
-
       <button
         onClick={onBack}
         className="absolute top-20 md:top-24 left-4 md:left-8 font-monument text-[10px] md:text-xs tracking-widest hover:text-[#e5d3b3] transition-colors z-50 flex items-center gap-3 md:gap-4 group bg-black/50 md:bg-transparent px-3 py-2 md:p-0 rounded-full md:rounded-none backdrop-blur-sm md:backdrop-blur-none"
@@ -43,7 +28,6 @@ export default function ServiceDetail({ activeService, onBack, frozenFrame }: Se
         className="w-full h-full max-w-7xl grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-center mt-16 md:mt-0 overflow-y-auto md:overflow-visible pb-8 md:pb-0 pointer-events-auto relative z-10"
         style={{ touchAction: 'pan-y' }}
       >
-        {/* Text Content */}
         <div className="glass-panel p-6 md:p-12 rounded-3xl order-2 md:order-1">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -75,7 +59,6 @@ export default function ServiceDetail({ activeService, onBack, frozenFrame }: Se
           </motion.div>
         </div>
 
-        {/* Video Panel */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9, filter: 'blur(20px)' }}
           animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
