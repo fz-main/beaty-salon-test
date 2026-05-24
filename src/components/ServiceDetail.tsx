@@ -31,7 +31,7 @@ export default function ServiceDetail({ activeService, onBack, transitionUrl }: 
           />
         ) : (
           <video
-            src="/beaty-salon-test/videos/service-bg.mp4"
+            src="/beaty-salon-test/videos/service-bg.mp4.mp4"
             autoPlay
             muted
             loop
