@@ -80,17 +80,17 @@ export default function App() {
       </div>
 
       {/* ДЕВУШКА — фон меню */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: stage === STAGES.MENU && !showTransition ? 1 : 0 }}
-        transition={{ duration: 2 }}
-        className="absolute inset-0 z-[1] pointer-events-none"
-      >
-        <video autoPlay muted loop playsInline className="w-full h-full object-cover object-top">
-          <source src="https://res.cloudinary.com/dfh97tdty/video/upload/v1779623634/8956058-uhd_3840_2160_24fps_1_orgyze.mp4" type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-black/55" />
-      </motion.div>
+      {(stage === STAGES.MENU || stage === STAGES.SERVICE_DETAIL) && (
+        <div
+          className="absolute inset-0 z-[1] pointer-events-none"
+          style={{ opacity: stage === STAGES.MENU && !showTransition ? 1 : 0, transition: 'opacity 2s ease' }}
+        >
+          <video autoPlay muted loop playsInline className="w-full h-full object-cover object-top">
+            <source src="https://res.cloudinary.com/dfh97tdty/video/upload/v1779623634/8956058-uhd_3840_2160_24fps_1_orgyze.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-black/55" />
+        </div>
+      )}
 
       {/* ФОНОВОЕ ВИДЕО ПЕРЕХОДА — остаётся на месте, паузится на последнем кадре */}
       {bgVideoUrl && (
