@@ -12,20 +12,37 @@ export default function App() {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [showTransition, setShowTransition] = useState(false);
   const [transitionUrl, setTransitionUrl] = useState('');
+  const [frozenFrame, setFrozenFrame] = useState<string>('');
 
-  const showCard = useCallback(() => {
+  const captureFrame = useCallback((video: HTMLVideoElement) => {
+    try {
+      const canvas = document.createElement('canvas');
+      canvas.width = video.videoWidth || 1920;
+      canvas.height = video.videoHeight || 1080;
+      const ctx = canvas.getContext('2d');
+      if (ctx) {
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        setFrozenFrame(canvas.toDataURL('image/jpeg', 0.85));
+      }
+    } catch {}
+  }, []);
+
+  const showCard = useCallback((video?: HTMLVideoElement) => {
+    if (video) captureFrame(video);
     setShowTransition(false);
     setStage(STAGES.SERVICE_DETAIL);
-  }, []);
+  }, [captureFrame]);
 
   const handleServiceClick = (service: Service) => {
     setActiveService(service);
     setTransitionUrl(service.transition);
+    setFrozenFrame('');
     setShowTransition(true);
   };
 
   const handleBack = () => {
     setIsTransitioning(true);
+    setFrozenFrame('');
     setStage(STAGES.MENU);
     setTimeout(() => {
       setActiveService(null);
@@ -73,7 +90,7 @@ export default function App() {
         <ThreeScene stage={stage} activeService={activeService} isTransitioning={isTransitioning} onServiceClick={handleServiceClick} />
       </div>
 
-      {/* ФОНОВОЕ ВИДЕО МЕНЮ */}
+      {/* ФОНОВОЕ ВИДЕО МЕНЮ — очень сильно затемнено */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: stage === STAGES.MENU && !showTransition ? 1 : 0 }}
@@ -83,7 +100,7 @@ export default function App() {
         <video autoPlay muted loop playsInline className="w-full h-full object-cover object-top">
           <source src="https://assets.mixkit.co/videos/preview/mixkit-close-up-of-a-womans-face-with-closed-eyes-and-glitter-39487-large.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-black/72" />
+        <div className="absolute inset-0 bg-black/55" />
       </motion.div>
 
       {/* ВИДЕО-ПЕРЕХОД */}
@@ -172,7 +189,7 @@ export default function App() {
               key="detail"
               activeService={activeService}
               onBack={handleBack}
-              transitionUrl={transitionUrl}
+              frozenFrame={frozenFrame}
             />
           )}
 
@@ -182,13 +199,13 @@ export default function App() {
   );
 }
 
-function TransitionVideo({ url, onEnded }: { url: string; onEnded: () => void }) {
+function TransitionVideo({ url, onEnded }: { url: string; onEnded: (v: HTMLVideoElement) => void }) {
   const ref = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const video = ref.current;
     if (!video) return;
-    video.play().catch(() => onEnded());
+    video.play().catch(() => onEnded(video));
   }, [onEnded]);
 
   return (
@@ -197,7 +214,7 @@ function TransitionVideo({ url, onEnded }: { url: string; onEnded: () => void })
       src={url}
       muted
       playsInline
-      onEnded={onEnded}
+      onEnded={(e) => onEnded(e.currentTarget)}
       className="w-full h-full object-cover"
     />
   );

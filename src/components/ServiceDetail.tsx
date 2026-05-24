@@ -4,10 +4,10 @@ import type { Service } from '../data/services';
 interface ServiceDetailProps {
   activeService: Service;
   onBack: () => void;
-  transitionUrl?: string;
+  frozenFrame?: string;
 }
 
-export default function ServiceDetail({ activeService, onBack, transitionUrl }: ServiceDetailProps) {
+export default function ServiceDetail({ activeService, onBack, frozenFrame }: ServiceDetailProps) {
   return (
     <motion.div
       key="detail"
@@ -17,30 +17,18 @@ export default function ServiceDetail({ activeService, onBack, transitionUrl }: 
       transition={{ duration: 0.8 }}
       className="absolute inset-0 pointer-events-auto flex items-center justify-center p-6 md:p-24"
     >
-      {/* Фон — последний кадр перехода размытый */}
+      {/* Замороженный последний кадр перехода — размытый фон */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-        {transitionUrl ? (
-          <video
-            src={transitionUrl}
-            autoPlay
-            muted
-            loop
-            playsInline
+        {frozenFrame ? (
+          <img
+            src={frozenFrame}
             className="w-full h-full object-cover scale-110"
-            style={{ filter: 'blur(18px)', transform: 'scale(1.15)' }}
+            style={{ filter: 'blur(20px)', transform: 'scale(1.15)' }}
           />
         ) : (
-          <video
-            src="/beaty-salon-test/videos/service-bg.mp4.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="w-full h-full object-cover scale-110"
-            style={{ filter: 'blur(18px)', transform: 'scale(1.15)' }}
-          />
+          <div className="w-full h-full bg-[#0a0a0a]" />
         )}
-        <div className="absolute inset-0 bg-black/65" />
+        <div className="absolute inset-0 bg-black/75" />
       </div>
 
       <button
@@ -94,10 +82,7 @@ export default function ServiceDetail({ activeService, onBack, transitionUrl }: 
           transition={{ duration: 1, delay: 0.4 }}
           className="w-full aspect-square md:aspect-[3/4] rounded-3xl overflow-hidden relative shadow-2xl order-1 md:order-2"
         >
-          <video
-            autoPlay muted loop playsInline
-            className="absolute inset-0 w-full h-full object-cover scale-105"
-          >
+          <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover scale-105">
             <source src={activeService.video} type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
