@@ -168,12 +168,14 @@ export default function App() {
               exit={{ opacity: 0 }} transition={{ duration: 0.8 }}
               className="absolute inset-0 pointer-events-auto"
             >
-              <div className="flex md:hidden flex-col items-center justify-center h-full gap-6 px-4">
+              {/* Mobile + Tablet: вертикальный список */}
+              <div className="flex lg:hidden flex-col items-center justify-center h-full gap-5 px-8">
                 {SERVICES.map((srv) => (
                   <MenuButton key={srv.id} service={srv} onClick={() => handleServiceClick(srv)} />
                 ))}
               </div>
-              <div className="hidden md:block w-full h-full">
+              {/* Desktop: раскиданные позиции */}
+              <div className="hidden lg:block w-full h-full">
                 <div className="absolute top-[18%] left-[8%]">
                   <MenuButton service={SERVICES[0]} onClick={() => handleServiceClick(SERVICES[0])} />
                 </div>
