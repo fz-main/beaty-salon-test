@@ -4,9 +4,10 @@ import type { Service } from '../data/services';
 interface ServiceDetailProps {
   activeService: Service;
   onBack: () => void;
+  transitionUrl?: string;
 }
 
-export default function ServiceDetail({ activeService, onBack }: ServiceDetailProps) {
+export default function ServiceDetail({ activeService, onBack, transitionUrl }: ServiceDetailProps) {
   return (
     <motion.div
       key="detail"
@@ -16,6 +17,32 @@ export default function ServiceDetail({ activeService, onBack }: ServiceDetailPr
       transition={{ duration: 0.8 }}
       className="absolute inset-0 pointer-events-auto flex items-center justify-center p-6 md:p-24"
     >
+      {/* Фон — последний кадр перехода размытый */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        {transitionUrl ? (
+          <video
+            src={transitionUrl}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover scale-110"
+            style={{ filter: 'blur(18px)', transform: 'scale(1.15)' }}
+          />
+        ) : (
+          <video
+            src="/beaty-salon-test/videos/service-bg.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover scale-110"
+            style={{ filter: 'blur(18px)', transform: 'scale(1.15)' }}
+          />
+        )}
+        <div className="absolute inset-0 bg-black/65" />
+      </div>
+
       <button
         onClick={onBack}
         className="absolute top-20 md:top-24 left-4 md:left-8 font-monument text-[10px] md:text-xs tracking-widest hover:text-[#e5d3b3] transition-colors z-50 flex items-center gap-3 md:gap-4 group bg-black/50 md:bg-transparent px-3 py-2 md:p-0 rounded-full md:rounded-none backdrop-blur-sm md:backdrop-blur-none"
@@ -24,8 +51,10 @@ export default function ServiceDetail({ activeService, onBack }: ServiceDetailPr
         Back
       </button>
 
-      <div className="w-full h-full max-w-7xl grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-center mt-16 md:mt-0 overflow-y-auto md:overflow-visible pb-8 md:pb-0 px-0 md:px-0 pointer-events-auto" style={{ touchAction: 'pan-y' }}>
-
+      <div
+        className="w-full h-full max-w-7xl grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-center mt-16 md:mt-0 overflow-y-auto md:overflow-visible pb-8 md:pb-0 pointer-events-auto relative z-10"
+        style={{ touchAction: 'pan-y' }}
+      >
         {/* Text Content */}
         <div className="glass-panel p-6 md:p-12 rounded-3xl order-2 md:order-1">
           <motion.div
@@ -73,7 +102,6 @@ export default function ServiceDetail({ activeService, onBack }: ServiceDetailPr
           </video>
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
         </motion.div>
-
       </div>
     </motion.div>
   );

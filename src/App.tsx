@@ -73,7 +73,7 @@ export default function App() {
         <ThreeScene stage={stage} activeService={activeService} isTransitioning={isTransitioning} onServiceClick={handleServiceClick} />
       </div>
 
-      {/* ФОНОВОЕ ВИДЕО */}
+      {/* ФОНОВОЕ ВИДЕО МЕНЮ */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: stage === STAGES.MENU && !showTransition ? 1 : 0 }}
@@ -168,7 +168,12 @@ export default function App() {
           )}
 
           {stage === STAGES.SERVICE_DETAIL && activeService && !isTransitioning && (
-            <ServiceDetail key="detail" activeService={activeService} onBack={handleBack} />
+            <ServiceDetail
+              key="detail"
+              activeService={activeService}
+              onBack={handleBack}
+              transitionUrl={transitionUrl}
+            />
           )}
 
         </AnimatePresence>
@@ -177,7 +182,6 @@ export default function App() {
   );
 }
 
-// Отдельный компонент — монтируется заново при каждом показе
 function TransitionVideo({ url, onEnded }: { url: string; onEnded: () => void }) {
   const ref = useRef<HTMLVideoElement>(null);
 
