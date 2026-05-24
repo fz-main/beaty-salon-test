@@ -1,4 +1,6 @@
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import BookingModal from './BookingModal';
 import type { Service } from '../data/services';
 
 const MASTERS: Record<string, { name: string; role: string; exp: string; bio: string; avatar: string }> = {
@@ -46,6 +48,7 @@ interface ServiceDetailProps {
 
 export default function ServiceDetail({ activeService, onBack }: ServiceDetailProps) {
   const master = MASTERS[activeService.id] || MASTERS.cosmetology;
+  const [showBooking, setShowBooking] = useState(false);
 
   return (
     <motion.div
@@ -96,7 +99,10 @@ export default function ServiceDetail({ activeService, onBack }: ServiceDetailPr
                 <div className="font-monument text-[8px] text-[#a3a3a3] mb-1 tracking-widest">Investment</div>
                 <div className="font-editorial text-lg md:text-2xl text-[#e5d3b3]">{activeService.price}</div>
               </div>
-              <button className="w-full md:w-auto mt-2 md:mt-0 md:ml-auto px-6 py-3 bg-white text-black font-monument text-[10px] tracking-widest rounded-full hover:bg-[#e5d3b3] transition-colors">
+              <button
+                onClick={() => setShowBooking(true)}
+                className="w-full md:w-auto mt-2 md:mt-0 md:ml-auto px-6 py-3 bg-white text-black font-monument text-[10px] tracking-widest rounded-full hover:bg-[#e5d3b3] transition-colors"
+              >
                 Reserve
               </button>
             </div>
@@ -154,6 +160,11 @@ export default function ServiceDetail({ activeService, onBack }: ServiceDetailPr
         </motion.div>
 
       </div>
+      <AnimatePresence>
+        {showBooking && (
+          <BookingModal service={activeService} onClose={() => setShowBooking(false)} />
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }
