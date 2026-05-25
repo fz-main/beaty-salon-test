@@ -2,10 +2,13 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { supabase } from '../lib/supabase';
 import type { Service } from '../data/services';
+import type { Lang, Translations } from '../lib/i18n';
 
 interface BookingModalProps {
   service: Service;
   onClose: () => void;
+  lang: Lang;
+  t: Translations;
 }
 
 const DURATION_MINUTES: Record<string, number> = {
@@ -41,10 +44,9 @@ function getDates(): Date[] {
   return dates;
 }
 
-const DAY_NAMES = ['Нд','Пн','Вт','Ср','Чт','Пт','Сб'];
-const MONTH_NAMES = ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
-
-export default function BookingModal({ service, onClose }: BookingModalProps) {
+export default function BookingModal({ service, onClose, lang: _lang, t }: BookingModalProps) {
+  const DAY_NAMES = t.days;
+  const MONTH_NAMES = t.months;
   const [step, setStep] = useState<'calendar'|'form'|'success'>('calendar');
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
@@ -64,17 +66,17 @@ export default function BookingModal({ service, onClose }: BookingModalProps) {
       .select('time_slot')
       .eq('service_id', service.id)
       .eq('date', dateStr)
-      .then(({ data }) => {
+      .then(({ data }: { data: { time_slot: string }[] | null }) => {
         setBookedSlots(data?.map(r => r.time_slot) || []);
       });
   }, [selectedDate, service.id]);
 
   const validate = () => {
     const e: Record<string, string> = {};
-    if (!form.firstName.trim()) e.firstName = 'Введите имя';
-    if (!form.lastName.trim()) e.lastName = 'Введите фамилию';
-    if (!form.phone.trim()) e.phone = 'Введите телефон';
-    if (!form.gdpr) e.gdpr = 'Необходимо согласие';
+    if (!form.firstName.trim()) e.firstName = t.errors.firstName;
+    if (!form.lastName.trim()) e.lastName = t.errors.lastName;
+    if (!form.phone.trim()) e.phone = t.errors.phone;
+    if (!form.gdpr) e.gdpr = t.errors.gdpr;
     setErrors(e);
     return Object.keys(e).length === 0;
   };
@@ -279,7 +281,7 @@ export default function BookingModal({ service, onClose }: BookingModalProps) {
                     {form.gdpr && <span className="text-black text-xs font-bold">✓</span>}
                   </div>
                   <span className="font-montreal text-xs text-[#a3a3a3] leading-relaxed">
-                    Я даю согласие на обработку моих персональных данных в соответствии с политикой конфиденциальности Kosmetika Nebeská. *
+                    {t.gdpr}
                   </span>
                 </label>
                 {errors.gdpr && <div className="text-red-400 text-xs font-montreal -mt-2">{errors.gdpr}</div>}
