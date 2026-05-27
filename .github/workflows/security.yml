@@ -23,8 +23,7 @@ jobs:
         uses: trufflesecurity/trufflehog@main
         with:
           path: ./
-          # Сканируем весь репозиторий без сравнения коммитов
-          extra_args: --only-verified --no-update
+          extra_args: --only-verified
 
   # 2. CodeQL
   codeql:
