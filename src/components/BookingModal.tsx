@@ -12,11 +12,12 @@ interface BookingModalProps {
 }
 
 const DURATION_MINUTES: Record<string, number> = {
-  cosmetology: 90,
+  permanent: 90,
+  manicure: 60,
+  pedicure: 60,
+  cosmetology: 60,
+  depilation: 30,
   massage: 60,
-  rituals: 120,
-  laser: 45,
-  peel: 60,
 };
 
 function generateSlots(durationMin: number): string[] {
