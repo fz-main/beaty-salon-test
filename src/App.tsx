@@ -49,7 +49,7 @@ export default function App() {
   };
 
   useEffect(() => {
-    const COOLDOWN = 1500;
+    const COOLDOWN = 2500;
     const handleWheel = (e: WheelEvent) => {
       const now = Date.now();
       if (now - lastScrollTime.current < COOLDOWN) return;
@@ -57,6 +57,7 @@ export default function App() {
       else if (stage === STAGES.MENU && e.deltaY < 0) { setStage(STAGES.INTRO); lastScrollTime.current = now; }
       else if (stage === STAGES.MENU && e.deltaY > 0) { setStage(STAGES.ABOUT); lastScrollTime.current = now; }
       else if (stage === STAGES.ABOUT && e.deltaY < 0) { setStage(STAGES.MENU); lastScrollTime.current = now; }
+
     };
     let touchStartY = 0;
     const handleTouchStart = (e: TouchEvent) => { touchStartY = e.touches[0].clientY; };
@@ -69,6 +70,7 @@ export default function App() {
         else if (stage === STAGES.MENU && deltaY < 0) { setStage(STAGES.INTRO); lastScrollTime.current = now; }
         else if (stage === STAGES.MENU && deltaY > 0) { setStage(STAGES.ABOUT); lastScrollTime.current = now; }
         else if (stage === STAGES.ABOUT && deltaY < 0) { setStage(STAGES.MENU); lastScrollTime.current = now; }
+
       }
     };
     window.addEventListener('wheel', handleWheel);
@@ -196,7 +198,7 @@ export default function App() {
               {/* Scroll hint to About */}
               <motion.div
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1, duration: 1 }}
-                className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none z-10"
+                className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-auto z-10 cursor-pointer" onClick={() => setStage(STAGES.ABOUT)}
               >
                 <span className="font-monument text-[8px] uppercase tracking-[0.3em] text-[#a3a3a3] mb-2">{t.aboutLabel}</span>
                 <div className="w-[1px] h-8 bg-white/20 overflow-hidden relative">
