@@ -13,6 +13,7 @@ export default function App() {
   const t = translations[lang];
 
   const [stage, setStage] = useState(STAGES.INTRO);
+  const lastScrollTime = useRef(0);
   const [activeService, setActiveService] = useState<Service | null>(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [showTransition, setShowTransition] = useState(false);
@@ -48,27 +49,26 @@ export default function App() {
   };
 
   useEffect(() => {
-    let lastChange = 0;
-    const COOLDOWN = 1200;
+    const COOLDOWN = 1500;
     const handleWheel = (e: WheelEvent) => {
       const now = Date.now();
-      if (now - lastChange < COOLDOWN) return;
-      if (stage === STAGES.INTRO && e.deltaY > 0) { setStage(STAGES.MENU); lastChange = now; }
-      else if (stage === STAGES.MENU && e.deltaY < 0) { setStage(STAGES.INTRO); lastChange = now; }
-      else if (stage === STAGES.MENU && e.deltaY > 0) { setStage(STAGES.ABOUT); lastChange = now; }
-      else if (stage === STAGES.ABOUT && e.deltaY < 0) { setStage(STAGES.MENU); lastChange = now; }
+      if (now - lastScrollTime.current < COOLDOWN) return;
+      if (stage === STAGES.INTRO && e.deltaY > 0) { setStage(STAGES.MENU); lastScrollTime.current = now; }
+      else if (stage === STAGES.MENU && e.deltaY < 0) { setStage(STAGES.INTRO); lastScrollTime.current = now; }
+      else if (stage === STAGES.MENU && e.deltaY > 0) { setStage(STAGES.ABOUT); lastScrollTime.current = now; }
+      else if (stage === STAGES.ABOUT && e.deltaY < 0) { setStage(STAGES.MENU); lastScrollTime.current = now; }
     };
     let touchStartY = 0;
     const handleTouchStart = (e: TouchEvent) => { touchStartY = e.touches[0].clientY; };
     const handleTouchEnd = (e: TouchEvent) => {
       const now = Date.now();
-      if (now - lastChange < COOLDOWN) return;
+      if (now - lastScrollTime.current < COOLDOWN) return;
       const deltaY = touchStartY - e.changedTouches[0].clientY;
       if (Math.abs(deltaY) > 50) {
-        if (stage === STAGES.INTRO && deltaY > 0) { setStage(STAGES.MENU); lastChange = now; }
-        else if (stage === STAGES.MENU && deltaY < 0) { setStage(STAGES.INTRO); lastChange = now; }
-        else if (stage === STAGES.MENU && deltaY > 0) { setStage(STAGES.ABOUT); lastChange = now; }
-        else if (stage === STAGES.ABOUT && deltaY < 0) { setStage(STAGES.MENU); lastChange = now; }
+        if (stage === STAGES.INTRO && deltaY > 0) { setStage(STAGES.MENU); lastScrollTime.current = now; }
+        else if (stage === STAGES.MENU && deltaY < 0) { setStage(STAGES.INTRO); lastScrollTime.current = now; }
+        else if (stage === STAGES.MENU && deltaY > 0) { setStage(STAGES.ABOUT); lastScrollTime.current = now; }
+        else if (stage === STAGES.ABOUT && deltaY < 0) { setStage(STAGES.MENU); lastScrollTime.current = now; }
       }
     };
     window.addEventListener('wheel', handleWheel);
