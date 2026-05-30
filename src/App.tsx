@@ -51,6 +51,8 @@ export default function App() {
     const handleWheel = (e: WheelEvent) => {
       if (stage === STAGES.INTRO && e.deltaY > 0) setStage(STAGES.MENU);
       else if (stage === STAGES.MENU && e.deltaY < 0) setStage(STAGES.INTRO);
+      else if (stage === STAGES.MENU && e.deltaY > 0) setStage(STAGES.ABOUT);
+      else if (stage === STAGES.ABOUT && e.deltaY < 0) setStage(STAGES.MENU);
     };
     let touchStartY = 0;
     const handleTouchStart = (e: TouchEvent) => { touchStartY = e.touches[0].clientY; };
@@ -59,6 +61,8 @@ export default function App() {
       if (Math.abs(deltaY) > 50) {
         if (stage === STAGES.INTRO && deltaY > 0) setStage(STAGES.MENU);
         else if (stage === STAGES.MENU && deltaY < 0) setStage(STAGES.INTRO);
+        else if (stage === STAGES.MENU && deltaY > 0) setStage(STAGES.ABOUT);
+        else if (stage === STAGES.ABOUT && deltaY < 0) setStage(STAGES.MENU);
       }
     };
     window.addEventListener('wheel', handleWheel);
@@ -125,7 +129,7 @@ export default function App() {
 
         {/* HEADER */}
         <header className="absolute top-0 left-0 w-full px-6 py-5 md:px-8 md:py-8 flex justify-between items-center z-50 mix-blend-difference">
-          <div className="font-monument text-[10px] md:text-xs tracking-[0.2em]">Kosmetika Nebeská</div>
+          <div className="font-monument text-[10px] md:text-xs tracking-[0.2em]">Salon Beauty Art</div>
           <div className="flex items-center gap-3 md:gap-4 pointer-events-auto">
             {/* Lang switcher */}
             <div className="flex items-center gap-1">
@@ -155,7 +159,7 @@ export default function App() {
               className="absolute inset-0 flex flex-col items-center justify-center px-4"
             >
               <div className="overflow-hidden flex flex-wrap justify-center">
-                {'NEBESKÁ'.split('').map((char, i) => (
+                {'BEAUTY ART'.split('').map((char, i) => (
                   <motion.span key={i} custom={i} variants={letterVariants} initial="hidden" animate="visible"
                     className="text-[16vw] sm:text-[14vw] md:text-[12vw] font-editorial leading-none tracking-tighter">
                     {char}
@@ -183,6 +187,18 @@ export default function App() {
               exit={{ opacity: 0 }} transition={{ duration: 0.8 }}
               className="absolute inset-0 pointer-events-auto"
             >
+              {/* Scroll hint to About */}
+              <motion.div
+                initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1, duration: 1 }}
+                className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none z-10"
+              >
+                <span className="font-monument text-[8px] uppercase tracking-[0.3em] text-[#a3a3a3] mb-2">{t.aboutLabel}</span>
+                <div className="w-[1px] h-8 bg-white/20 overflow-hidden relative">
+                  <motion.div animate={{ y: ['-100%', '100%'] }} transition={{ repeat: Infinity, duration: 1.5, ease: 'linear' }}
+                    className="absolute inset-0 bg-[#e5d3b3]" />
+                </div>
+              </motion.div>
+
               {/* Mobile + Tablet */}
               <div className="flex lg:hidden flex-col items-center justify-center h-full gap-5 px-8">
                 {SERVICES.map((srv) => (
@@ -204,6 +220,64 @@ export default function App() {
                       onClick={() => handleServiceClick(srv)} enterLabel={t.enterModule} />
                   </div>
                 ))}
+              </div>
+
+            </motion.div>
+          )}
+
+          {/* ABOUT SECTION */}
+          {stage === STAGES.ABOUT && (
+            <motion.div key="about"
+              initial={{ opacity: 0, y: 60 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 60 }}
+              transition={{ duration: 1, ease: 'easeOut' }}
+              className="absolute inset-0 pointer-events-auto overflow-y-auto flex items-center justify-center px-6 py-20"
+            >
+              <button
+                onClick={() => setStage(STAGES.MENU)}
+                className="fixed top-16 md:top-20 left-4 md:left-8 font-monument text-[10px] md:text-xs tracking-widest hover:text-[#e5d3b3] transition-colors z-50 flex items-center gap-3 group bg-black/60 px-3 py-2 rounded-full backdrop-blur-sm"
+              >
+                <span className="w-4 h-[1px] bg-white group-hover:bg-[#e5d3b3] transition-colors" />
+                {t.back}
+              </button>
+
+              <div className="max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
+                {/* Photo */}
+                <motion.div
+                  initial={{ opacity: 0, x: -40 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1.2, delay: 0.2, ease: 'easeOut' }}
+                  className="flex justify-center"
+                >
+                  <img
+                    src="/beaty-salon-test/natalia-owner.png"
+                    alt="Наталья Драгунчик"
+                    className="w-64 md:w-80 object-contain drop-shadow-2xl"
+                  />
+                </motion.div>
+
+                {/* Text */}
+                <motion.div
+                  initial={{ opacity: 0, x: 40 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1.2, delay: 0.4, ease: 'easeOut' }}
+                >
+                  <div className="font-monument text-[9px] tracking-[0.3em] text-[#e5d3b3] mb-4 uppercase">{t.aboutLabel}</div>
+                  <h2 className="font-editorial text-4xl md:text-5xl mb-2 leading-tight">{t.ownerName}</h2>
+                  <div className="font-montreal text-xs text-[#a3a3a3] tracking-widest mb-6">{t.aboutFounder}</div>
+                  <div className="border-t border-white/10 pt-6 flex flex-col gap-4">
+                    <p className="font-montreal text-sm text-[#a3a3a3] leading-relaxed">
+                      {t.aboutBio}
+                    </p>
+                    <p className="font-montreal text-sm leading-relaxed" style={{ color: '#e5d3b3' }}>
+                      {t.aboutMotto}
+                    </p>
+                    <div className="font-monument text-[9px] tracking-widest text-[#a3a3a3] mt-2">
+                      {t.aboutServices}
+                    </div>
+                  </div>
+                </motion.div>
               </div>
             </motion.div>
           )}
