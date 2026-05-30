@@ -287,6 +287,18 @@ export default function App() {
                   </div>
                 </motion.div>
               </div>
+
+              {/* Scroll up hint */}
+              <motion.div
+                initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2, duration: 1 }}
+                className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none"
+              >
+                <div className="w-[1px] h-8 bg-white/20 overflow-hidden relative mb-2">
+                  <motion.div animate={{ y: ['100%', '-100%'] }} transition={{ repeat: Infinity, duration: 1.5, ease: 'linear' }}
+                    className="absolute inset-0 bg-[#e5d3b3]" />
+                </div>
+                <span className="font-monument text-[8px] uppercase tracking-[0.3em] text-[#a3a3a3]">discover services</span>
+              </motion.div>
             </motion.div>
           )}
 
