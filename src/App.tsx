@@ -48,21 +48,27 @@ export default function App() {
   };
 
   useEffect(() => {
+    let lastChange = 0;
+    const COOLDOWN = 1200;
     const handleWheel = (e: WheelEvent) => {
-      if (stage === STAGES.INTRO && e.deltaY > 0) setStage(STAGES.MENU);
-      else if (stage === STAGES.MENU && e.deltaY < 0) setStage(STAGES.INTRO);
-      else if (stage === STAGES.MENU && e.deltaY > 0) setStage(STAGES.ABOUT);
-      else if (stage === STAGES.ABOUT && e.deltaY < 0) setStage(STAGES.MENU);
+      const now = Date.now();
+      if (now - lastChange < COOLDOWN) return;
+      if (stage === STAGES.INTRO && e.deltaY > 0) { setStage(STAGES.MENU); lastChange = now; }
+      else if (stage === STAGES.MENU && e.deltaY < 0) { setStage(STAGES.INTRO); lastChange = now; }
+      else if (stage === STAGES.MENU && e.deltaY > 0) { setStage(STAGES.ABOUT); lastChange = now; }
+      else if (stage === STAGES.ABOUT && e.deltaY < 0) { setStage(STAGES.MENU); lastChange = now; }
     };
     let touchStartY = 0;
     const handleTouchStart = (e: TouchEvent) => { touchStartY = e.touches[0].clientY; };
     const handleTouchEnd = (e: TouchEvent) => {
+      const now = Date.now();
+      if (now - lastChange < COOLDOWN) return;
       const deltaY = touchStartY - e.changedTouches[0].clientY;
       if (Math.abs(deltaY) > 50) {
-        if (stage === STAGES.INTRO && deltaY > 0) setStage(STAGES.MENU);
-        else if (stage === STAGES.MENU && deltaY < 0) setStage(STAGES.INTRO);
-        else if (stage === STAGES.MENU && deltaY > 0) setStage(STAGES.ABOUT);
-        else if (stage === STAGES.ABOUT && deltaY < 0) setStage(STAGES.MENU);
+        if (stage === STAGES.INTRO && deltaY > 0) { setStage(STAGES.MENU); lastChange = now; }
+        else if (stage === STAGES.MENU && deltaY < 0) { setStage(STAGES.INTRO); lastChange = now; }
+        else if (stage === STAGES.MENU && deltaY > 0) { setStage(STAGES.ABOUT); lastChange = now; }
+        else if (stage === STAGES.ABOUT && deltaY < 0) { setStage(STAGES.MENU); lastChange = now; }
       }
     };
     window.addEventListener('wheel', handleWheel);
