@@ -195,35 +195,39 @@ export default function App() {
               exit={{ opacity: 0 }} transition={{ duration: 0.8 }}
               className="absolute inset-0 pointer-events-auto"
             >
-              {/* Contacts + О нас hint */}
+              {/* Contacts - centered */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 1 }}
-                className="absolute bottom-0 left-0 right-0 pointer-events-auto z-10"
-                style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%)' }}
+                className="absolute bottom-28 left-1/2 -translate-x-1/2 w-full max-w-2xl px-6 pointer-events-auto z-10"
               >
-                <div className="px-6 md:px-12 py-5 flex flex-col md:flex-row items-center justify-between gap-3 max-w-5xl mx-auto">
-                  <div className="flex flex-col gap-1 text-center md:text-left">
-                    <div className="font-monument text-[9px] tracking-[0.25em] text-[#e5d3b3] uppercase mb-1">Kontakty</div>
-                    <div className="font-montreal text-xs text-white/80">Praha 1, Nové Město, V Jámě 1, Dům u Nováků</div>
-                    <div className="font-montreal text-xs text-white/80 flex flex-wrap justify-center md:justify-start gap-x-2">
-                      <a href="tel:+420776771771" className="hover:text-[#e5d3b3] transition-colors">+420 776 771 771</a>
-                      <span className="text-white/30">·</span>
-                      <a href="mailto:Beautyart.praha@gmail.com" className="hover:text-[#e5d3b3] transition-colors">Beautyart.praha@gmail.com</a>
-                    </div>
+                <div className="flex flex-col items-center gap-1 text-center">
+                  <div className="font-monument text-[9px] tracking-[0.25em] text-[#e5d3b3] uppercase mb-1">Kontakty</div>
+                  <div className="font-montreal text-xs text-white/80">Praha 1, Nové Město, V Jámě 1, Dům u Nováků</div>
+                  <div className="font-montreal text-xs text-white/80 flex flex-wrap justify-center gap-x-2">
+                    <a href="tel:+420776771771" className="hover:text-[#e5d3b3] transition-colors">+420 776 771 771</a>
+                    <span className="text-white/30">·</span>
+                    <a href="mailto:Beautyart.praha@gmail.com" className="hover:text-[#e5d3b3] transition-colors">Beautyart.praha@gmail.com</a>
                   </div>
-                  <div className="flex items-center gap-5">
+                  <div className="flex items-center gap-5 mt-1">
                     <a href="https://www.facebook.com/groups/4789557447823536" target="_blank" rel="noopener noreferrer"
-                      className="font-monument text-[10px] tracking-widest text-white/60 hover:text-[#e5d3b3] transition-colors uppercase">Facebook</a>
+                      className="font-monument text-[9px] tracking-widest text-white/60 hover:text-[#e5d3b3] transition-colors uppercase">Facebook</a>
                     <span className="text-white/20">·</span>
                     <a href="https://www.instagram.com/salon_praha" target="_blank" rel="noopener noreferrer"
-                      className="font-monument text-[10px] tracking-widest text-white/60 hover:text-[#e5d3b3] transition-colors uppercase">Instagram</a>
-                    <span className="text-white/20">·</span>
-                    <button onClick={() => setStage(STAGES.ABOUT)}
-                      className="font-monument text-[10px] tracking-widest text-[#e5d3b3] hover:text-white transition-colors uppercase flex items-center gap-2">
-                      {t.aboutLabel}
-                      <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5l4 4 4-4" stroke="currentColor" strokeWidth="1"/></svg>
-                    </button>
+                      className="font-monument text-[9px] tracking-widest text-white/60 hover:text-[#e5d3b3] transition-colors uppercase">Instagram</a>
                   </div>
+                </div>
+              </motion.div>
+
+              {/* О нас / discover scroll hint - bottom center */}
+              <motion.div
+                initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1, duration: 1 }}
+                className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-auto z-10 cursor-pointer"
+                onClick={() => setStage(STAGES.ABOUT)}
+              >
+                <span className="font-monument text-[8px] uppercase tracking-[0.3em] text-[#a3a3a3] mb-2">{t.aboutLabel}</span>
+                <div className="w-[1px] h-8 bg-white/20 overflow-hidden relative">
+                  <motion.div animate={{ y: ["-100%", "100%"] }} transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
+                    className="absolute inset-0 bg-[#e5d3b3]" />
                 </div>
               </motion.div>
 
@@ -308,42 +312,42 @@ export default function App() {
                 </motion.div>
               </div>
 
-              {/* Contacts - prominent */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 1 }}
-                className="absolute bottom-0 left-0 right-0 px-6 md:px-12 py-5"
-                style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 70%, transparent 100%)' }}
-              >
-                <div className="flex flex-col md:flex-row items-center justify-between gap-3 max-w-4xl mx-auto">
-                  <div className="flex flex-col gap-1 text-center md:text-left">
-                    <div className="font-monument text-[9px] tracking-[0.3em] text-[#e5d3b3] uppercase mb-1">Kontakty</div>
-                    <div className="font-montreal text-xs text-white/80">Praha 1, Nové Město, V Jámě 1, Dům u Nováků</div>
-                    <div className="font-montreal text-xs text-white/80">
-                      <a href="tel:+420776771771" className="hover:text-[#e5d3b3] transition-colors">+420 776 771 771</a>
-                      {' · '}
-                      <a href="mailto:Beautyart.praha@gmail.com" className="hover:text-[#e5d3b3] transition-colors">Beautyart.praha@gmail.com</a>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-5">
-                    <a href="https://www.facebook.com/groups/4789557447823536" target="_blank" rel="noopener noreferrer"
-                      className="font-monument text-[10px] tracking-widest text-white/70 hover:text-[#e5d3b3] transition-colors uppercase">Facebook</a>
-                    <span className="text-white/20">·</span>
-                    <a href="https://www.instagram.com/salon_praha" target="_blank" rel="noopener noreferrer"
-                      className="font-monument text-[10px] tracking-widest text-white/70 hover:text-[#e5d3b3] transition-colors uppercase">Instagram</a>
-                  </div>
-                </div>
-              </motion.div>
+
 
               {/* Discover services - top center */}
               <motion.div
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2, duration: 1 }}
-                className="absolute top-24 md:top-28 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none"
+                className="absolute top-20 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none"
               >
                 <div className="w-[1px] h-8 bg-white/20 overflow-hidden relative mb-2">
                   <motion.div animate={{ y: ['100%', '-100%'] }} transition={{ repeat: Infinity, duration: 1.5, ease: 'linear' }}
                     className="absolute inset-0 bg-[#e5d3b3]" />
                 </div>
                 <span className="font-monument text-[8px] uppercase tracking-[0.3em] text-[#a3a3a3]">discover services</span>
+              </motion.div>
+
+              {/* Contacts - bottom of About */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 1 }}
+                className="absolute bottom-0 left-0 right-0 pointer-events-auto z-10"
+                style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%)' }}
+              >
+                <div className="px-6 md:px-12 py-5 flex flex-col items-center gap-1 text-center">
+                  <div className="font-monument text-[9px] tracking-[0.25em] text-[#e5d3b3] uppercase mb-1">Kontakty</div>
+                  <div className="font-montreal text-xs text-white/80">Praha 1, Nové Město, V Jámě 1, Dům u Nováků</div>
+                  <div className="font-montreal text-xs text-white/80 flex flex-wrap justify-center gap-x-2">
+                    <a href="tel:+420776771771" className="hover:text-[#e5d3b3] transition-colors">+420 776 771 771</a>
+                    <span className="text-white/30">·</span>
+                    <a href="mailto:Beautyart.praha@gmail.com" className="hover:text-[#e5d3b3] transition-colors">Beautyart.praha@gmail.com</a>
+                  </div>
+                  <div className="flex items-center gap-5 mt-1">
+                    <a href="https://www.facebook.com/groups/4789557447823536" target="_blank" rel="noopener noreferrer"
+                      className="font-monument text-[9px] tracking-widest text-white/60 hover:text-[#e5d3b3] transition-colors uppercase">Facebook</a>
+                    <span className="text-white/20">·</span>
+                    <a href="https://www.instagram.com/salon_praha" target="_blank" rel="noopener noreferrer"
+                      className="font-monument text-[9px] tracking-widest text-white/60 hover:text-[#e5d3b3] transition-colors uppercase">Instagram</a>
+                  </div>
+                </div>
               </motion.div>
             </motion.div>
           )}
