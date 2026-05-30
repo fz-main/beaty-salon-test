@@ -195,15 +195,33 @@ export default function App() {
               exit={{ opacity: 0 }} transition={{ duration: 0.8 }}
               className="absolute inset-0 pointer-events-auto"
             >
-              {/* Scroll hint to About */}
+              {/* Contacts + scroll hint */}
               <motion.div
-                initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1, duration: 1 }}
-                className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-auto z-10 cursor-pointer" onClick={() => setStage(STAGES.ABOUT)}
+                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 1 }}
+                className="absolute bottom-4 left-1/2 -translate-x-1/2 w-full max-w-2xl px-6 pointer-events-auto z-10"
               >
-                <span className="font-monument text-[8px] uppercase tracking-[0.3em] text-[#a3a3a3] mb-2">{t.aboutLabel}</span>
-                <div className="w-[1px] h-8 bg-white/20 overflow-hidden relative">
-                  <motion.div animate={{ y: ['-100%', '100%'] }} transition={{ repeat: Infinity, duration: 1.5, ease: 'linear' }}
-                    className="absolute inset-0 bg-[#e5d3b3]" />
+                <div className="border-t border-white/10 pt-3 flex flex-col md:flex-row items-center justify-between gap-2">
+                  <div className="flex flex-col gap-1 text-center md:text-left">
+                    <div className="font-montreal text-[9px] text-[#a3a3a3]">Praha 1, Nové Město, V Jámě 1, Dům u Nováků</div>
+                    <div className="font-montreal text-[9px] text-[#a3a3a3]">
+                      <a href="tel:+420776771771" className="hover:text-white transition-colors">+420 776 771 771</a>
+                      {' · '}
+                      <a href="mailto:Beautyart.praha@gmail.com" className="hover:text-white transition-colors">Beautyart.praha@gmail.com</a>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <a href="https://www.facebook.com/groups/4789557447823536" target="_blank" rel="noopener noreferrer"
+                      className="font-monument text-[8px] tracking-widest text-[#a3a3a3] hover:text-[#e5d3b3] transition-colors uppercase">Facebook</a>
+                    <span className="text-white/20">·</span>
+                    <a href="https://www.instagram.com/salon_praha" target="_blank" rel="noopener noreferrer"
+                      className="font-monument text-[8px] tracking-widest text-[#a3a3a3] hover:text-[#e5d3b3] transition-colors uppercase">Instagram</a>
+                    <span className="text-white/20">·</span>
+                    <button onClick={() => setStage(STAGES.ABOUT)}
+                      className="font-monument text-[8px] tracking-widest text-[#a3a3a3] hover:text-[#e5d3b3] transition-colors uppercase flex items-center gap-2">
+                      {t.aboutLabel}
+                      <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5l4 4 4-4" stroke="currentColor" strokeWidth="1"/></svg>
+                    </button>
+                  </div>
                 </div>
               </motion.div>
 
@@ -313,16 +331,16 @@ export default function App() {
                 </div>
               </motion.div>
 
-              {/* Scroll up hint */}
+              {/* Scroll up hint - top */}
               <motion.div
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2, duration: 1 }}
-                className="absolute top-20 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none"
+                className="absolute top-6 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none"
               >
-                <div className="w-[1px] h-8 bg-white/20 overflow-hidden relative mb-2">
+                <span className="font-monument text-[8px] uppercase tracking-[0.3em] text-[#a3a3a3] mb-2">discover services</span>
+                <div className="w-[1px] h-8 bg-white/20 overflow-hidden relative">
                   <motion.div animate={{ y: ['100%', '-100%'] }} transition={{ repeat: Infinity, duration: 1.5, ease: 'linear' }}
                     className="absolute inset-0 bg-[#e5d3b3]" />
                 </div>
-                <span className="font-monument text-[8px] uppercase tracking-[0.3em] text-[#a3a3a3]">discover services</span>
               </motion.div>
             </motion.div>
           )}
