@@ -288,10 +288,35 @@ export default function App() {
                 </motion.div>
               </div>
 
+              {/* Contacts */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 1 }}
+                className="absolute bottom-6 left-1/2 -translate-x-1/2 w-full max-w-2xl px-6"
+              >
+                <div className="border-t border-white/10 pt-4 flex flex-col md:flex-row items-center justify-between gap-4">
+                  <div className="flex flex-col gap-1 text-center md:text-left">
+                    <div className="font-monument text-[8px] tracking-[0.25em] text-[#e5d3b3] uppercase mb-1">Kontakty</div>
+                    <div className="font-montreal text-[10px] text-[#a3a3a3]">Praha 1, Nové Město, V Jámě 1, Dům u Nováků</div>
+                    <div className="font-montreal text-[10px] text-[#a3a3a3]">
+                      <a href="tel:+420776771771" className="hover:text-white transition-colors">+420 776 771 771</a>
+                      {' · '}
+                      <a href="mailto:Beautyart.praha@gmail.com" className="hover:text-white transition-colors">Beautyart.praha@gmail.com</a>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <a href="https://www.facebook.com/groups/4789557447823536" target="_blank" rel="noopener noreferrer"
+                      className="font-monument text-[9px] tracking-widest text-[#a3a3a3] hover:text-[#e5d3b3] transition-colors uppercase">Facebook</a>
+                    <span className="text-white/20">·</span>
+                    <a href="https://www.instagram.com/salon_praha" target="_blank" rel="noopener noreferrer"
+                      className="font-monument text-[9px] tracking-widest text-[#a3a3a3] hover:text-[#e5d3b3] transition-colors uppercase">Instagram</a>
+                  </div>
+                </div>
+              </motion.div>
+
               {/* Scroll up hint */}
               <motion.div
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2, duration: 1 }}
-                className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none"
+                className="absolute top-20 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none"
               >
                 <div className="w-[1px] h-8 bg-white/20 overflow-hidden relative mb-2">
                   <motion.div animate={{ y: ['100%', '-100%'] }} transition={{ repeat: Infinity, duration: 1.5, ease: 'linear' }}
