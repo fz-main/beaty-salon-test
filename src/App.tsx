@@ -317,10 +317,10 @@ export default function App() {
               {/* Discover services - top center */}
               <motion.div
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2, duration: 1 }}
-                className="fixed top-0 left-1/2 -translate-x-1/2 flex flex-col items-center justify-center gap-1 pointer-events-none z-50 h-14"
+                className="fixed top-2 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 pointer-events-none z-50"
               >
                 <span className="font-monument text-[8px] uppercase tracking-[0.3em] text-[#a3a3a3]">discover services</span>
-                <div className="w-[1px] h-6 bg-white/20 overflow-hidden relative">
+                <div className="w-[1px] h-8 bg-white/20 overflow-hidden relative">
                   <motion.div animate={{ y: ['100%', '-100%'] }} transition={{ repeat: Infinity, duration: 1.5, ease: 'linear' }}
                     className="absolute inset-0 bg-[#e5d3b3]" />
                 </div>
