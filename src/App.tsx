@@ -221,7 +221,7 @@ export default function App() {
               {/* О нас / discover scroll hint - bottom center */}
               <motion.div
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1, duration: 1 }}
-                className="absolute top-20 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-auto z-10 cursor-pointer"
+                className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-auto z-10 cursor-pointer"
                 onClick={() => setStage(STAGES.ABOUT)}
               >
                 <span className="font-monument text-[8px] uppercase tracking-[0.3em] text-[#a3a3a3] mb-2">{t.aboutLabel}</span>
