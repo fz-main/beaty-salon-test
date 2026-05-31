@@ -198,7 +198,7 @@ export default function App() {
               {/* Contacts - centered */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 1 }}
-                className="absolute bottom-28 left-1/2 -translate-x-1/2 w-full max-w-2xl px-6 pointer-events-auto z-10"
+                className="absolute bottom-20 md:bottom-28 left-1/2 -translate-x-1/2 w-full max-w-2xl px-4 md:px-6 pointer-events-auto z-10"
               >
                 <div className="flex flex-col items-center gap-1 text-center">
                   <div className="font-monument text-[9px] tracking-[0.25em] text-[#e5d3b3] uppercase mb-1">Kontakty</div>
@@ -221,7 +221,7 @@ export default function App() {
               {/* О нас / discover scroll hint - bottom center */}
               <motion.div
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1, duration: 1 }}
-                className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-auto z-10 cursor-pointer"
+                className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-auto z-10 cursor-pointer"
                 onClick={() => setStage(STAGES.ABOUT)}
               >
                 <span className="font-monument text-[8px] uppercase tracking-[0.3em] text-[#a3a3a3] mb-2">{t.aboutLabel}</span>
@@ -264,11 +264,11 @@ export default function App() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 60 }}
               transition={{ duration: 1, ease: 'easeOut' }}
-              className="absolute inset-0 pointer-events-auto overflow-y-auto flex items-center justify-center px-6 py-20"
+              className="absolute inset-0 pointer-events-auto overflow-y-auto flex items-start md:items-center justify-center px-4 md:px-6 pt-20 md:pt-0 pb-32"
             >
               <button
                 onClick={() => setStage(STAGES.MENU)}
-                className="fixed top-16 md:top-20 left-4 md:left-8 font-monument text-[10px] md:text-xs tracking-widest hover:text-[#e5d3b3] transition-colors z-50 flex items-center gap-3 group bg-black/60 px-3 py-2 rounded-full backdrop-blur-sm"
+                className="fixed top-14 md:top-20 left-3 md:left-8 font-monument text-[10px] tracking-widest hover:text-[#e5d3b3] transition-colors z-50 flex items-center gap-2 group bg-black/70 px-3 py-2 rounded-full backdrop-blur-sm"
               >
                 <span className="w-4 h-[1px] bg-white group-hover:bg-[#e5d3b3] transition-colors" />
                 {t.back}
@@ -285,7 +285,7 @@ export default function App() {
                   <img
                     src="/beaty-salon-test/natalia-owner.png"
                     alt="Наталья Драгунчик"
-                    className="w-64 md:w-80 object-contain drop-shadow-2xl"
+                    className="w-48 md:w-80 object-contain drop-shadow-2xl"
                   />
                 </motion.div>
 
@@ -296,7 +296,7 @@ export default function App() {
                   transition={{ duration: 1.2, delay: 0.4, ease: 'easeOut' }}
                 >
                   <div className="font-monument text-[9px] tracking-[0.3em] text-[#e5d3b3] mb-4 uppercase">{t.aboutLabel}</div>
-                  <h2 className="font-editorial text-4xl md:text-5xl mb-2 leading-tight">{t.ownerName}</h2>
+                  <h2 className="font-editorial text-3xl md:text-5xl mb-2 leading-tight">{t.ownerName}</h2>
                   <div className="font-montreal text-xs text-[#a3a3a3] tracking-widest mb-6">{t.aboutFounder}</div>
                   <div className="border-t border-white/10 pt-6 flex flex-col gap-4">
                     <p className="font-montreal text-sm text-[#a3a3a3] leading-relaxed">
