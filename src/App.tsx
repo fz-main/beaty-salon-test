@@ -195,44 +195,40 @@ export default function App() {
               exit={{ opacity: 0 }} transition={{ duration: 0.8 }}
               className="absolute inset-0 pointer-events-auto"
             >
-              {/* Contacts - centered */}
+              {/* Bottom bar: contacts + О нас — fixed at bottom */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 1 }}
-                className="absolute bottom-20 md:bottom-28 left-1/2 -translate-x-1/2 w-full max-w-2xl px-4 md:px-6 pointer-events-auto z-10"
+                className="fixed bottom-0 left-0 right-0 pointer-events-auto z-20"
+                style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 60%, transparent 100%)' }}
               >
-                <div className="flex flex-col items-center gap-1 text-center">
+                <div className="flex flex-col items-center gap-1 text-center px-4 pt-6 pb-8">
                   <div className="font-monument text-[9px] tracking-[0.25em] text-[#e5d3b3] uppercase mb-1">Kontakty</div>
-                  <div className="font-montreal text-xs text-white/80">Praha 1, Nové Město, V Jámě 1, Dům u Nováků</div>
-                  <div className="font-montreal text-xs text-white/80 flex flex-wrap justify-center gap-x-2">
+                  <div className="font-montreal text-[10px] text-white/80">Praha 1, Nové Město, V Jámě 1, Dům u Nováků</div>
+                  <div className="font-montreal text-[10px] text-white/80 flex flex-wrap justify-center gap-x-2">
                     <a href="tel:+420776771771" className="hover:text-[#e5d3b3] transition-colors">+420 776 771 771</a>
                     <span className="text-white/30">·</span>
                     <a href="mailto:Beautyart.praha@gmail.com" className="hover:text-[#e5d3b3] transition-colors">Beautyart.praha@gmail.com</a>
                   </div>
-                  <div className="flex items-center gap-5 mt-1">
+                  <div className="flex items-center gap-4 mt-1 mb-3">
                     <a href="https://www.facebook.com/groups/4789557447823536" target="_blank" rel="noopener noreferrer"
                       className="font-monument text-[9px] tracking-widest text-white/60 hover:text-[#e5d3b3] transition-colors uppercase">Facebook</a>
                     <span className="text-white/20">·</span>
                     <a href="https://www.instagram.com/salon_praha" target="_blank" rel="noopener noreferrer"
                       className="font-monument text-[9px] tracking-widest text-white/60 hover:text-[#e5d3b3] transition-colors uppercase">Instagram</a>
                   </div>
-                </div>
-              </motion.div>
-
-              {/* О нас / discover scroll hint - bottom center */}
-              <motion.div
-                initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1, duration: 1 }}
-                className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-auto z-10 cursor-pointer"
-                onClick={() => setStage(STAGES.ABOUT)}
-              >
-                <span className="font-monument text-[8px] uppercase tracking-[0.3em] text-[#a3a3a3] mb-2">{t.aboutLabel}</span>
-                <div className="w-[1px] h-8 bg-white/20 overflow-hidden relative">
-                  <motion.div animate={{ y: ["-100%", "100%"] }} transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
-                    className="absolute inset-0 bg-[#e5d3b3]" />
+                  <button onClick={() => setStage(STAGES.ABOUT)}
+                    className="flex flex-col items-center gap-1 cursor-pointer">
+                    <span className="font-monument text-[8px] uppercase tracking-[0.3em] text-[#a3a3a3]">{t.aboutLabel}</span>
+                    <div className="w-[1px] h-5 bg-white/20 overflow-hidden relative">
+                      <motion.div animate={{ y: ["-100%", "100%"] }} transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
+                        className="absolute inset-0 bg-[#e5d3b3]" />
+                    </div>
+                  </button>
                 </div>
               </motion.div>
 
               {/* Mobile + Tablet */}
-              <div className="flex lg:hidden flex-col items-center justify-center h-full gap-5 px-8">
+              <div className="flex lg:hidden flex-col items-center justify-center h-full gap-4 px-8 pb-56 pt-2">
                 {SERVICES.map((srv) => (
                   <MenuButton key={srv.id} service={{ ...srv, title: t.services[srv.id as keyof typeof t.services]?.title || srv.title }}
                     onClick={() => handleServiceClick(srv)} enterLabel={t.enterModule} />
