@@ -262,7 +262,7 @@ export default function App() {
             >
               <button
                 onClick={() => setStage(STAGES.MENU)}
-                className="fixed top-14 md:top-20 left-3 md:left-8 font-monument text-[10px] tracking-widest hover:text-[#e5d3b3] transition-colors z-50 flex items-center gap-2 group bg-black/70 px-3 py-2 rounded-full backdrop-blur-sm"
+                className="fixed top-3 left-3 md:top-5 md:left-6 font-monument text-[10px] tracking-widest hover:text-[#e5d3b3] transition-colors z-50 flex items-center gap-2 group bg-black/70 px-3 py-2 rounded-full backdrop-blur-sm"
               >
                 <span className="w-4 h-[1px] bg-white group-hover:bg-[#e5d3b3] transition-colors" />
                 {t.back}
