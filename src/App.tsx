@@ -195,37 +195,7 @@ export default function App() {
               exit={{ opacity: 0 }} transition={{ duration: 0.8 }}
               className="absolute inset-0 pointer-events-auto"
             >
-              {/* Bottom bar: contacts + О нас — fixed at bottom */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 1 }}
-                className="fixed bottom-0 left-0 right-0 pointer-events-auto z-20"
-                style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 60%, transparent 100%)' }}
-              >
-                <div className="flex flex-col items-center gap-1 text-center px-4 pt-6 pb-8">
-                  <div className="font-monument text-[9px] tracking-[0.25em] text-[#e5d3b3] uppercase mb-1">Kontakty</div>
-                  <div className="font-montreal text-[10px] text-white/80">Praha 1, Nové Město, V Jámě 1, Dům u Nováků</div>
-                  <div className="font-montreal text-[10px] text-white/80 flex flex-wrap justify-center gap-x-2">
-                    <a href="tel:+420776771771" className="hover:text-[#e5d3b3] transition-colors">+420 776 771 771</a>
-                    <span className="text-white/30">·</span>
-                    <a href="mailto:Beautyart.praha@gmail.com" className="hover:text-[#e5d3b3] transition-colors">Beautyart.praha@gmail.com</a>
-                  </div>
-                  <div className="flex items-center gap-4 mt-1 mb-3">
-                    <a href="https://www.facebook.com/groups/4789557447823536" target="_blank" rel="noopener noreferrer"
-                      className="font-monument text-[9px] tracking-widest text-white/60 hover:text-[#e5d3b3] transition-colors uppercase">Facebook</a>
-                    <span className="text-white/20">·</span>
-                    <a href="https://www.instagram.com/salon_praha" target="_blank" rel="noopener noreferrer"
-                      className="font-monument text-[9px] tracking-widest text-white/60 hover:text-[#e5d3b3] transition-colors uppercase">Instagram</a>
-                  </div>
-                  <button onClick={() => setStage(STAGES.ABOUT)}
-                    className="flex flex-col items-center gap-1 cursor-pointer">
-                    <span className="font-monument text-[8px] uppercase tracking-[0.3em] text-[#a3a3a3]">{t.aboutLabel}</span>
-                    <div className="w-[1px] h-5 bg-white/20 overflow-hidden relative">
-                      <motion.div animate={{ y: ["-100%", "100%"] }} transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
-                        className="absolute inset-0 bg-[#e5d3b3]" />
-                    </div>
-                  </button>
-                </div>
-              </motion.div>
+
 
               {/* Mobile + Tablet */}
               <div className="flex lg:hidden flex-col items-center justify-center h-full gap-4 px-8 pb-56 pt-2">
@@ -341,6 +311,36 @@ export default function App() {
 
         </AnimatePresence>
       </div>
+
+      {/* Fixed footer - only on MENU stage */}
+      {stage === STAGES.MENU && (
+        <div className="fixed bottom-0 left-0 right-0 z-30 pointer-events-auto"
+          style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.5) 70%, transparent 100%)' }}>
+          <div className="flex flex-col items-center gap-1 text-center px-4 pt-5 pb-7">
+            <div className="font-monument text-[9px] tracking-[0.25em] text-[#e5d3b3] uppercase mb-1">Kontakty</div>
+            <div className="font-montreal text-[10px] text-white/80">Praha 1, Nové Město, V Jámě 1, Dům u Nováků</div>
+            <div className="font-montreal text-[10px] text-white/80 flex flex-wrap justify-center gap-x-2">
+              <a href="tel:+420776771771" className="hover:text-[#e5d3b3] transition-colors">+420 776 771 771</a>
+              <span className="text-white/30">·</span>
+              <a href="mailto:Beautyart.praha@gmail.com" className="hover:text-[#e5d3b3] transition-colors">Beautyart.praha@gmail.com</a>
+            </div>
+            <div className="flex items-center gap-4 mt-1 mb-2">
+              <a href="https://www.facebook.com/groups/4789557447823536" target="_blank" rel="noopener noreferrer"
+                className="font-monument text-[9px] tracking-widest text-white/60 hover:text-[#e5d3b3] transition-colors uppercase">Facebook</a>
+              <span className="text-white/20">·</span>
+              <a href="https://www.instagram.com/salon_praha" target="_blank" rel="noopener noreferrer"
+                className="font-monument text-[9px] tracking-widest text-white/60 hover:text-[#e5d3b3] transition-colors uppercase">Instagram</a>
+            </div>
+            <button onClick={() => setStage(STAGES.ABOUT)} className="flex flex-col items-center gap-1 cursor-pointer">
+              <span className="font-monument text-[8px] uppercase tracking-[0.3em] text-[#a3a3a3]">{t.aboutLabel}</span>
+              <div className="w-[1px] h-5 bg-white/20 overflow-hidden relative">
+                <motion.div animate={{ y: ['-100%', '100%'] }} transition={{ repeat: Infinity, duration: 1.5, ease: 'linear' }}
+                  className="absolute inset-0 bg-[#e5d3b3]" />
+              </div>
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
