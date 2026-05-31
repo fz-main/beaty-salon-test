@@ -84,17 +84,16 @@ export default function ServiceDetail({ activeService, onBack, lang: _lang, t }:
         {/* MASTERS */}
         <motion.div
           initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4 }}
-          className="glass-panel rounded-2xl md:rounded-3xl p-5 md:p-10"
+          className="glass-panel rounded-2xl md:rounded-3xl p-5 md:p-10 overflow-hidden"
         >
           <div className="font-monument text-[9px] tracking-[0.25em] text-[#e5d3b3] mb-4">{t.yourSpecialist}</div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {Array.isArray(mastersT) && mastersT.map((m, i) => (
-              <div key={i} className="flex items-center gap-3">
-                <div className="shrink-0 w-12 h-12 md:w-16 md:h-16 overflow-hidden rounded-xl">
+              <div key={i} className="flex items-center gap-3 overflow-hidden">
+                <div style={{ width: 56, height: 56, minWidth: 56, overflow: "hidden", borderRadius: 12, flexShrink: 0 }}>
                   {m.photo ? (
                     <img src={m.photo} alt={m.name}
-                      className="w-full h-full object-cover object-top"
-                      style={{ border: '1px solid rgba(229,211,179,0.2)' }} />
+                      style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top", border: "1px solid rgba(229,211,179,0.2)" }} />
                   ) : (
                     <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl flex items-center justify-center text-base font-editorial font-bold"
                       style={{ background: 'linear-gradient(135deg, #2a2a2a, #1a1a1a)', border: '1px solid rgba(229,211,179,0.2)', color: '#e5d3b3' }}>
