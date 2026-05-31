@@ -264,6 +264,13 @@ export default function App() {
                 onClick={() => setStage(STAGES.MENU)}
                 className="fixed top-4 right-4 md:top-6 md:right-8 font-monument text-[10px] tracking-widest hover:text-[#e5d3b3] transition-colors z-[60] flex items-center gap-2 group bg-black/80 px-4 py-2 rounded-full backdrop-blur-sm"
               >
+                <span className="w-3 h-[1px] bg-white group-hover:bg-[#e5d3b3] transition-colors" />
+                {t.back}
+              </button>
+              <button
+                onClick={() => setStage(STAGES.MENU)}
+                className="fixed top-4 right-4 md:top-6 md:right-8 font-monument text-[10px] tracking-widest hover:text-[#e5d3b3] transition-colors z-[60] flex items-center gap-2 group bg-black/80 px-4 py-2 rounded-full backdrop-blur-sm"
+              >
                 <span className="w-4 h-[1px] bg-white group-hover:bg-[#e5d3b3] transition-colors" />
                 {t.back}
               </button>
@@ -279,7 +286,7 @@ export default function App() {
                   <img
                     src="/beaty-salon-test/natalia-owner.png"
                     alt="Наталья Драгунчик"
-                    className="w-48 md:w-80 object-contain drop-shadow-2xl"
+                    className="w-36 md:w-72 object-contain drop-shadow-2xl"
                   />
                 </motion.div>
 
