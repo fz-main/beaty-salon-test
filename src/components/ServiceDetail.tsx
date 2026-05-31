@@ -1,20 +1,18 @@
-import { useState } from 'react';
+
 import { motion, AnimatePresence } from 'framer-motion';
-import BookingModal from './BookingModal';
 import type { Service } from '../data/services';
 import type { Lang, Translations } from '../lib/i18n';
 
 interface ServiceDetailProps {
   activeService: Service;
   onBack: () => void;
-  lang: Lang;
+  lang?: Lang;
   t: Translations;
 }
 
-export default function ServiceDetail({ activeService, onBack, lang, t }: ServiceDetailProps) {
-  const [showBooking, setShowBooking] = useState(false);
+export default function ServiceDetail({ activeService, onBack, lang: _lang, t }: ServiceDetailProps) {
   const srvT = t.services[activeService.id as keyof typeof t.services];
-  const masterT = t.masters[activeService.id as keyof typeof t.masters];
+  const mastersT = (t.masters[activeService.id as keyof typeof t.masters] as unknown) as Array<{ name: string; role: string; exp: string; photo?: string }>;
 
   return (
     <motion.div
@@ -60,7 +58,7 @@ export default function ServiceDetail({ activeService, onBack, lang, t }: Servic
                 <div className="font-editorial text-lg md:text-2xl text-[#e5d3b3]">{activeService.price}</div>
               </div>
               <button
-                onClick={() => setShowBooking(true)}
+                onClick={() => window.open('https://n1315340.alteg.io/company/1258605/personal/menu?o=', '_blank')}
                 className="w-full md:w-auto mt-2 md:mt-0 md:ml-auto px-6 py-3 bg-white text-black font-monument text-[10px] tracking-widest rounded-full hover:bg-[#e5d3b3] transition-colors"
               >
                 {t.reserve}
@@ -81,31 +79,37 @@ export default function ServiceDetail({ activeService, onBack, lang, t }: Servic
         {/* MASTER BLOCK */}
         <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.5 }}
           className="glass-panel rounded-3xl p-6 md:p-10 flex flex-col md:flex-row items-start md:items-center gap-6">
-          <div className="shrink-0">
-            <div className="w-20 h-20 md:w-28 md:h-28 rounded-2xl flex items-center justify-center text-xl md:text-2xl font-editorial font-bold"
-              style={{ background: 'linear-gradient(135deg, #2a2a2a, #1a1a1a)', border: '1px solid rgba(229,211,179,0.2)', color: '#e5d3b3' }}>
-              {masterT?.name.split(' ').map(n => n[0]).join('')}
-            </div>
-          </div>
+
           <div className="flex-1">
-            <div className="font-monument text-[9px] tracking-[0.25em] text-[#e5d3b3] mb-1">{t.yourSpecialist}</div>
-            <h3 className="font-editorial text-2xl md:text-4xl mb-1">{masterT?.name}</h3>
-            <div className="font-montreal text-sm text-[#a3a3a3] mb-3">{masterT?.role} · {masterT?.exp}</div>
-            <p className="font-montreal text-sm md:text-base text-[#a3a3a3] leading-relaxed max-w-xl">{masterT?.bio}</p>
-          </div>
-          <div className="shrink-0 hidden md:flex flex-col items-center gap-2 px-6 py-4 rounded-2xl"
-            style={{ border: '1px solid rgba(229,211,179,0.15)' }}>
-            <div className="font-monument text-[8px] tracking-widest text-[#a3a3a3]">Certified</div>
-            <div className="text-[#e5d3b3] text-2xl">✦</div>
-            <div className="font-monument text-[8px] tracking-widest text-[#a3a3a3]">Expert</div>
+            <div className="font-monument text-[9px] tracking-[0.25em] text-[#e5d3b3] mb-4">{t.yourSpecialist}</div>
+            <div className="flex flex-col gap-5">
+              {Array.isArray(mastersT) && mastersT.map((m, i) => (
+                <div key={i} className="flex items-center gap-4">
+                  <div className="shrink-0">
+                    {m.photo ? (
+                      <img src={m.photo} alt={m.name}
+                        className="w-16 h-16 rounded-2xl object-cover object-top"
+                        style={{ border: '1px solid rgba(229,211,179,0.2)' }} />
+                    ) : (
+                      <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-lg font-editorial font-bold"
+                        style={{ background: 'linear-gradient(135deg, #2a2a2a, #1a1a1a)', border: '1px solid rgba(229,211,179,0.2)', color: '#e5d3b3' }}>
+                        {m.name.split(' ').map((n: string) => n[0]).join('')}
+                      </div>
+                    )}
+                  </div>
+                  <div>
+                    <div className="font-editorial text-lg md:text-xl">{m.name}</div>
+                    <div className="font-montreal text-xs text-[#a3a3a3]">{m.role} · {m.exp}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </motion.div>
       </div>
 
       <AnimatePresence>
-        {showBooking && (
-          <BookingModal service={activeService} onClose={() => setShowBooking(false)} lang={lang} t={t} />
-        )}
+
       </AnimatePresence>
     </motion.div>
   );

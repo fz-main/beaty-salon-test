@@ -43,12 +43,12 @@ export const translations = {
       massage: { title: 'Masáž', subtitle: 'Tělo & Duše', desc: 'Relaxační a terapeutické masážní techniky pro uvolnění napětí, obnovení rovnováhy a revitalizaci těla.' },
     },
     masters: {
-      permanent: { name: 'Natalia Dragunchik', role: 'Specialistka permanentního makeupu', exp: 'Zkušená mistryně', bio: 'Expertka na permanentní makeup, kosmetologii, vizáž, depilaci a pedikúru. Vytváří přirozené výsledky s precizní technikou.' },
-      manicure: { name: 'Karolína Kantarevič', role: 'Mistryně manikúry a pedikúry', exp: 'Zkušená mistryně', bio: 'Specialistka na manikúru a pedikúru s důrazem na kvalitu a detail. Každý zákazník odchází spokojený.' },
-      pedicure: { name: 'Anna Kuliš', role: 'Specialistka modeláže nehtů', exp: 'Zkušená mistryně', bio: 'Expertka na modeláž nehtů a pedikúru. Vytváří krásné a trvanlivé výsledky s individuálním přístupem.' },
-      cosmetology: { name: 'Inessa', role: 'Kosmetoložka & Masérka', exp: 'Zkušená specialistka', bio: 'Kosmetoložka, masérka a zdravotní sestra v jedné osobě. Kombinuje medicínské znalosti s estetickým cítěním.' },
-      depilation: { name: 'Natalia Dragunchik', role: 'Specialistka depilace', exp: 'Zkušená mistryně', bio: 'Provádí šetrnou a účinnou depilaci všech partií těla s maximálním pohodlím klientek.' },
-      massage: { name: 'Inessa', role: 'Masérka & Kosmetoložka', exp: 'Zkušená specialistka', bio: 'Terapeutické a relaxační masáže přizpůsobené individuálním potřebám. Zdravotní vzdělání zaručuje profesionální přístup.' },
+      permanent: [{ name: 'Natalia Dragunchik', role: 'Permanentní makeup specialistka', exp: 'Stáž 14 let', photo: '/beaty-salon-test/natalia.webp' }],
+      manicure:  [{ name: 'Natalia Dragunchik', role: 'Mistryně manikúry', exp: 'Stáž 14 let', photo: '/beaty-salon-test/natalia.webp' }, { name: 'Karolína Kantarevič', role: 'Manikúra & pedikúra', exp: 'Stáž 6 let', photo: '/beaty-salon-test/karolina.webp' }],
+      pedicure:  [{ name: 'Natalia Dragunchik', role: 'Specialistka pedikúry', exp: 'Stáž 14 let', photo: '/beaty-salon-test/natalia.webp' }, { name: 'Anna Kuliš', role: 'Modeláž nehtů & pedikúra', exp: 'Stáž 8 let', photo: '/beaty-salon-test/anna.webp' }, { name: 'Karolína Kantarevič', role: 'Manikúra & pedikúra', exp: 'Stáž 6 let', photo: '/beaty-salon-test/karolina.webp' }],
+      cosmetology: [{ name: 'Natalia Dragunchik', role: 'Kosmetoložka & vizažistka', exp: 'Stáž 14 let', photo: '/beaty-salon-test/natalia.webp' }, { name: 'Inessa', role: 'Kosmetoložka & masérka & zdravotní sestra', exp: 'Stáž 9 let', photo: '/beaty-salon-test/inessa.webp' }],
+      depilation: [{ name: 'Natalia Dragunchik', role: 'Specialistka depilace', exp: 'Stáž 14 let', photo: '/beaty-salon-test/natalia.webp' }],
+      massage:   [{ name: 'Inessa', role: 'Kosmetoložka & masérka & zdravotní sestra', exp: 'Stáž 9 let', photo: '/beaty-salon-test/inessa.webp' }],
     }
   },
   en: {
@@ -93,12 +93,12 @@ export const translations = {
       massage: { title: 'Massage', subtitle: 'Body & Soul', desc: 'Relaxing and therapeutic massage techniques to release tension, restore balance and revitalize the body.' },
     },
     masters: {
-      permanent: { name: 'Natalia Dragunchik', role: 'Permanent Makeup Specialist', exp: 'Experienced master', bio: 'Expert in permanent makeup, cosmetology, visage, depilation and pedicure. Creates natural results with precise technique.' },
-      manicure: { name: 'Karolína Kantarevič', role: 'Manicure & Pedicure Master', exp: 'Experienced master', bio: 'Specialist in manicure and pedicure with a focus on quality and detail. Every client leaves satisfied.' },
-      pedicure: { name: 'Anna Kuliš', role: 'Nail Sculpting Specialist', exp: 'Experienced master', bio: 'Expert in nail sculpting and pedicure. Creates beautiful and long-lasting results with an individual approach.' },
-      cosmetology: { name: 'Inessa', role: 'Cosmetologist & Massage Therapist', exp: 'Experienced specialist', bio: 'Cosmetologist, massage therapist and nurse in one. Combines medical knowledge with aesthetic sensibility.' },
-      depilation: { name: 'Natalia Dragunchik', role: 'Depilation Specialist', exp: 'Experienced master', bio: 'Performs gentle and effective hair removal for all body zones with maximum client comfort.' },
-      massage: { name: 'Inessa', role: 'Massage Therapist & Cosmetologist', exp: 'Experienced specialist', bio: 'Therapeutic and relaxing massages tailored to individual needs. Medical background ensures a professional approach.' },
+      permanent: [{ name: 'Natalia Dragunchik', role: 'Permanent makeup specialist', exp: '14 years exp', photo: '/beaty-salon-test/natalia.webp' }],
+      manicure:  [{ name: 'Natalia Dragunchik', role: 'Manicure master', exp: '14 years exp', photo: '/beaty-salon-test/natalia.webp' }, { name: 'Karolína Kantarevič', role: 'Manicure & pedicure', exp: '6 years exp', photo: '/beaty-salon-test/karolina.webp' }],
+      pedicure:  [{ name: 'Natalia Dragunchik', role: 'Pedicure specialist', exp: '14 years exp', photo: '/beaty-salon-test/natalia.webp' }, { name: 'Anna Kuliš', role: 'Nail sculpting & pedicure', exp: '8 years exp', photo: '/beaty-salon-test/anna.webp' }, { name: 'Karolína Kantarevič', role: 'Manicure & pedicure', exp: '6 years exp', photo: '/beaty-salon-test/karolina.webp' }],
+      cosmetology: [{ name: 'Natalia Dragunchik', role: 'Cosmetologist & visagiste', exp: '14 years exp', photo: '/beaty-salon-test/natalia.webp' }, { name: 'Inessa', role: 'Cosmetologist & massage therapist & nurse', exp: '9 years exp', photo: '/beaty-salon-test/inessa.webp' }],
+      depilation: [{ name: 'Natalia Dragunchik', role: 'Depilation specialist', exp: '14 years exp', photo: '/beaty-salon-test/natalia.webp' }],
+      massage:   [{ name: 'Inessa', role: 'Cosmetologist & massage therapist & nurse', exp: '9 years exp', photo: '/beaty-salon-test/inessa.webp' }],
     }
   },
   de: {
@@ -143,12 +143,12 @@ export const translations = {
       massage: { title: 'Massage', subtitle: 'Körper & Seele', desc: 'Entspannende und therapeutische Massagetechniken zur Lösung von Verspannungen, Wiederherstellung der Balance und Revitalisierung.' },
     },
     masters: {
-      permanent: { name: 'Natalia Dragunchik', role: 'Permanent-Make-up-Spezialistin', exp: 'Erfahrene Meisterin', bio: 'Expertin für permanentes Make-up, Kosmetologie, Visagistik, Depilation und Pediküre. Natürliche Ergebnisse mit präziser Technik.' },
-      manicure: { name: 'Karolína Kantarevič', role: 'Maniküre & Pediküre Meisterin', exp: 'Erfahrene Meisterin', bio: 'Spezialistin für Maniküre und Pediküre mit Fokus auf Qualität und Detail. Jede Kundin geht zufrieden nach Hause.' },
-      pedicure: { name: 'Anna Kuliš', role: 'Nagelmodellage-Spezialistin', exp: 'Erfahrene Meisterin', bio: 'Expertin für Nagelmodellage und Pediküre. Erstellt schöne und langlebige Ergebnisse mit individuellem Ansatz.' },
-      cosmetology: { name: 'Inessa', role: 'Kosmetologin & Massagetherapeutin', exp: 'Erfahrene Spezialistin', bio: 'Kosmetologin, Massagetherapeutin und Krankenschwester in einer Person. Verbindet medizinisches Wissen mit ästhetischem Gespür.' },
-      depilation: { name: 'Natalia Dragunchik', role: 'Depilationsspezialistin', exp: 'Erfahrene Meisterin', bio: 'Führt schonende und effektive Haarentfernung für alle Körperzonen mit maximalem Komfort durch.' },
-      massage: { name: 'Inessa', role: 'Massagetherapeutin & Kosmetologin', exp: 'Erfahrene Spezialistin', bio: 'Therapeutische und entspannende Massagen auf individuelle Bedürfnisse abgestimmt. Medizinische Ausbildung garantiert professionellen Ansatz.' },
+      permanent: [{ name: 'Natalia Dragunchik', role: 'Permanent-Make-up-Spezialistin', exp: '14 Jahre Erfahrung', photo: '/beaty-salon-test/natalia.webp' }],
+      manicure:  [{ name: 'Natalia Dragunchik', role: 'Maniküre-Meisterin', exp: '14 Jahre Erfahrung', photo: '/beaty-salon-test/natalia.webp' }, { name: 'Karolína Kantarevič', role: 'Maniküre & Pediküre', exp: '6 Jahre Erfahrung', photo: '/beaty-salon-test/karolina.webp' }],
+      pedicure:  [{ name: 'Natalia Dragunchik', role: 'Pediküre-Spezialistin', exp: '14 Jahre Erfahrung', photo: '/beaty-salon-test/natalia.webp' }, { name: 'Anna Kuliš', role: 'Nagelmodellage & Pediküre', exp: '8 Jahre Erfahrung', photo: '/beaty-salon-test/anna.webp' }, { name: 'Karolína Kantarevič', role: 'Maniküre & Pediküre', exp: '6 Jahre Erfahrung', photo: '/beaty-salon-test/karolina.webp' }],
+      cosmetology: [{ name: 'Natalia Dragunchik', role: 'Kosmetologin & Visagistin', exp: '14 Jahre Erfahrung', photo: '/beaty-salon-test/natalia.webp' }, { name: 'Inessa', role: 'Kosmetologin & Massagetherapeutin & Krankenschwester', exp: '9 Jahre Erfahrung', photo: '/beaty-salon-test/inessa.webp' }],
+      depilation: [{ name: 'Natalia Dragunchik', role: 'Depilationsspezialistin', exp: '14 Jahre Erfahrung', photo: '/beaty-salon-test/natalia.webp' }],
+      massage:   [{ name: 'Inessa', role: 'Kosmetologin & Massagetherapeutin & Krankenschwester', exp: '9 Jahre Erfahrung', photo: '/beaty-salon-test/inessa.webp' }],
     }
   }
 };
