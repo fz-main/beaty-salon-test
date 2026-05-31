@@ -258,7 +258,7 @@ export default function App() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 60 }}
               transition={{ duration: 1, ease: 'easeOut' }}
-              className="absolute inset-0 pointer-events-auto overflow-y-auto flex items-start md:items-center justify-center px-4 md:px-6 pt-20 md:pt-0 pb-32"
+              className="absolute inset-0 pointer-events-auto overflow-y-auto px-4 md:px-6 pt-20 pb-8"
             >
               <button
                 onClick={() => setStage(STAGES.MENU)}
