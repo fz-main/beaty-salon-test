@@ -25,7 +25,7 @@ export default function ServiceDetail({ activeService, onBack, lang: _lang, t }:
     >
       <button
         onClick={onBack}
-        className="fixed top-14 md:top-20 left-3 md:left-8 font-monument text-[10px] tracking-widest hover:text-[#e5d3b3] transition-colors z-50 flex items-center gap-2 group bg-black/70 px-3 py-2 rounded-full backdrop-blur-sm pointer-events-auto"
+        className="fixed top-4 right-4 md:top-6 md:right-8 font-monument text-[10px] tracking-widest hover:text-[#e5d3b3] transition-colors z-[60] flex items-center gap-2 bg-black/80 px-4 py-2 rounded-full backdrop-blur-sm pointer-events-auto"
       >
         <span className="w-3 h-[1px] bg-white group-hover:bg-[#e5d3b3] transition-colors" />
         {t.back}
@@ -40,7 +40,7 @@ export default function ServiceDetail({ activeService, onBack, lang: _lang, t }:
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, delay: 0.1 }}
             className="rounded-2xl md:rounded-3xl overflow-hidden relative shadow-2xl md:order-2"
-            style={{ aspectRatio: '16/9', maxHeight: '38vh' }}
+            style={{ aspectRatio: '16/9', maxHeight: '30vh' }}
           >
             <video autoPlay muted loop playsInline preload="auto" className="absolute inset-0 w-full h-full object-cover">
               <source src={activeService.video} type="video/mp4" />
@@ -90,10 +90,10 @@ export default function ServiceDetail({ activeService, onBack, lang: _lang, t }:
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {Array.isArray(mastersT) && mastersT.map((m, i) => (
               <div key={i} className="flex items-center gap-3">
-                <div className="shrink-0">
+                <div className="shrink-0 w-12 h-12 md:w-16 md:h-16 overflow-hidden rounded-xl">
                   {m.photo ? (
                     <img src={m.photo} alt={m.name}
-                      className="w-12 h-12 md:w-16 md:h-16 rounded-xl object-cover object-top"
+                      className="w-full h-full object-cover object-top"
                       style={{ border: '1px solid rgba(229,211,179,0.2)' }} />
                   ) : (
                     <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl flex items-center justify-center text-base font-editorial font-bold"
