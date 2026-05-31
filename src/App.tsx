@@ -258,84 +258,60 @@ export default function App() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 60 }}
               transition={{ duration: 1, ease: 'easeOut' }}
-              className="absolute inset-0 pointer-events-auto overflow-y-auto px-4 md:px-6 pt-20 pb-8"
+              className="absolute inset-0 pointer-events-auto overflow-y-auto"
             >
+              {/* Back button */}
               <button
                 onClick={() => setStage(STAGES.MENU)}
-                className="fixed top-4 right-4 md:top-6 md:right-8 font-monument text-[10px] tracking-widest hover:text-[#e5d3b3] transition-colors z-[60] flex items-center gap-2 group bg-black/80 px-4 py-2 rounded-full backdrop-blur-sm"
+                className="fixed top-4 right-4 md:top-6 md:right-8 font-monument text-[10px] tracking-widest hover:text-[#e5d3b3] transition-colors z-[60] flex items-center gap-2 bg-black/80 px-4 py-2 rounded-full backdrop-blur-sm"
               >
-                <span className="w-3 h-[1px] bg-white group-hover:bg-[#e5d3b3] transition-colors" />
-                {t.back}
-              </button>
-              <button
-                onClick={() => setStage(STAGES.MENU)}
-                className="fixed top-4 right-4 md:top-6 md:right-8 font-monument text-[10px] tracking-widest hover:text-[#e5d3b3] transition-colors z-[60] flex items-center gap-2 group bg-black/80 px-4 py-2 rounded-full backdrop-blur-sm"
-              >
-                <span className="w-4 h-[1px] bg-white group-hover:bg-[#e5d3b3] transition-colors" />
+                <span className="w-3 h-[1px] bg-white" />
                 {t.back}
               </button>
 
-              <div className="max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
+              <div className="max-w-4xl mx-auto px-5 pt-20 pb-12 flex flex-col md:flex-row gap-8 md:gap-12 items-start md:items-center">
                 {/* Photo */}
                 <motion.div
-                  initial={{ opacity: 0, x: -40 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 1.2, delay: 0.2, ease: 'easeOut' }}
-                  className="flex justify-center"
+                  initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1, delay: 0.2 }}
+                  className="shrink-0 flex justify-center w-full md:w-auto"
                 >
-                  <img
-                    src="/beaty-salon-test/natalia-owner.png"
-                    alt="Наталья Драгунчик"
-                    className="w-36 md:w-72 object-contain drop-shadow-2xl"
-                  />
+                  <img src="/beaty-salon-test/natalia-owner.png" alt="Наталья Драгунчик"
+                    className="w-40 md:w-64 object-contain drop-shadow-2xl" />
                 </motion.div>
 
                 {/* Text */}
-                <motion.div
-                  initial={{ opacity: 0, x: 40 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 1.2, delay: 0.4, ease: 'easeOut' }}
-                >
-                  <div className="font-monument text-[9px] tracking-[0.3em] text-[#e5d3b3] mb-4 uppercase">{t.aboutLabel}</div>
-                  <h2 className="font-editorial text-3xl md:text-5xl mb-2 leading-tight">{t.ownerName}</h2>
-                  <div className="font-montreal text-xs text-[#a3a3a3] tracking-widest mb-6">{t.aboutFounder}</div>
-                  <div className="border-t border-white/10 pt-6 flex flex-col gap-4">
-                    <p className="font-montreal text-sm text-[#a3a3a3] leading-relaxed">
-                      {t.aboutBio}
-                    </p>
-                    <p className="font-montreal text-sm leading-relaxed" style={{ color: '#e5d3b3' }}>
-                      {t.aboutMotto}
-                    </p>
-                    <div className="font-monument text-[9px] tracking-widest text-[#a3a3a3] mt-2">
-                      {t.aboutServices}
-                    </div>
+                <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1, delay: 0.3 }}>
+                  <div className="font-monument text-[9px] tracking-[0.3em] text-[#e5d3b3] mb-3 uppercase">{t.aboutLabel}</div>
+                  <h2 className="font-editorial text-3xl md:text-5xl mb-1 leading-tight">{t.ownerName}</h2>
+                  <div className="font-montreal text-xs text-[#a3a3a3] tracking-widest mb-5">{t.aboutFounder}</div>
+                  <div className="border-t border-white/10 pt-5 flex flex-col gap-3">
+                    <p className="font-montreal text-sm text-[#a3a3a3] leading-relaxed">{t.aboutBio}</p>
+                    <p className="font-montreal text-sm leading-relaxed" style={{ color: '#e5d3b3' }}>{t.aboutMotto}</p>
+                    <div className="font-monument text-[8px] tracking-widest text-[#a3a3a3] mt-1">{t.aboutServices}</div>
                   </div>
                 </motion.div>
               </div>
 
-              {/* Contacts - bottom of About */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 1 }}
-                className="absolute bottom-0 left-0 right-0 pointer-events-auto z-10"
-                style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%)' }}
-              >
-                <div className="px-6 md:px-12 py-5 flex flex-col items-center gap-1 text-center">
-                  <div className="font-monument text-[9px] tracking-[0.25em] text-[#e5d3b3] uppercase mb-1">Kontakty</div>
-                  <div className="font-montreal text-xs text-white/80">Praha 1, Nové Město, V Jámě 1, Dům u Nováků</div>
-                  <div className="font-montreal text-xs text-white/80 flex flex-wrap justify-center gap-x-2">
-                    <a href="tel:+420776771771" className="hover:text-[#e5d3b3] transition-colors">+420 776 771 771</a>
-                    <span className="text-white/30">·</span>
-                    <a href="mailto:Beautyart.praha@gmail.com" className="hover:text-[#e5d3b3] transition-colors">Beautyart.praha@gmail.com</a>
-                  </div>
-                  <div className="flex items-center gap-5 mt-1">
-                    <a href="https://www.facebook.com/groups/4789557447823536" target="_blank" rel="noopener noreferrer"
-                      className="font-monument text-[9px] tracking-widest text-white/60 hover:text-[#e5d3b3] transition-colors uppercase">Facebook</a>
-                    <span className="text-white/20">·</span>
-                    <a href="https://www.instagram.com/salon_praha" target="_blank" rel="noopener noreferrer"
-                      className="font-monument text-[9px] tracking-widest text-white/60 hover:text-[#e5d3b3] transition-colors uppercase">Instagram</a>
-                  </div>
+              {/* Contacts */}
+              <div className="max-w-4xl mx-auto px-5 pb-10 flex flex-col items-center gap-1 text-center"
+                style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+                <div className="font-monument text-[8px] tracking-[0.25em] text-[#e5d3b3] uppercase mt-5 mb-1">Kontakty</div>
+                <div className="font-montreal text-xs text-white/70">Praha 1, Nové Město, V Jámě 1, Dům u Nováků</div>
+                <div className="font-montreal text-xs text-white/70 flex flex-wrap justify-center gap-x-2">
+                  <a href="tel:+420776771771" className="hover:text-[#e5d3b3] transition-colors">+420 776 771 771</a>
+                  <span className="text-white/30">·</span>
+                  <a href="mailto:Beautyart.praha@gmail.com" className="hover:text-[#e5d3b3] transition-colors">Beautyart.praha@gmail.com</a>
                 </div>
-              </motion.div>
+                <div className="flex items-center gap-4 mt-1">
+                  <a href="https://www.facebook.com/groups/4789557447823536" target="_blank" rel="noopener noreferrer"
+                    className="font-monument text-[9px] tracking-widest text-white/50 hover:text-[#e5d3b3] transition-colors uppercase">Facebook</a>
+                  <span className="text-white/20">·</span>
+                  <a href="https://www.instagram.com/salon_praha" target="_blank" rel="noopener noreferrer"
+                    className="font-monument text-[9px] tracking-widest text-white/50 hover:text-[#e5d3b3] transition-colors uppercase">Instagram</a>
+                </div>
+              </div>
             </motion.div>
           )}
 
