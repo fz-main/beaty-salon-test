@@ -85,7 +85,7 @@ export const SERVICES: Service[] = [
     subtitle: 'Body & Soul',
     desc: 'Relaxing and therapeutic massage techniques to release tension, restore balance and revitalize the body.',
     video: 'https://res.cloudinary.com/dfh97tdty/video/upload/v1779635467/fefba50b4ae23a4f1addb6ffe426ef86_720w_nej3zd.mp4',
-    transition: 'https://res.cloudinary.com/dfh97tdty/video/upload/v1779519696/transition1_qhqff4.mp4',
+    transition: 'https://res.cloudinary.com/dfh97tdty/video/upload/v1780046243/5920464878404581476_pw2vgf.mp4',
     price: 'od 800 CZK',
     time: '60 min',
     position: [0, 0, 15],
