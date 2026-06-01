@@ -255,11 +255,12 @@ export default function App() {
               {/* Desktop */}
               <div className="hidden lg:block w-full h-full">
                 {[
-                  { srv: SERVICES[0], pos: 'absolute top-[18%] left-[8%]' },
-                  { srv: SERVICES[1], pos: 'absolute top-[18%] right-[8%]' },
+                  { srv: SERVICES[0], pos: 'absolute top-[15%] left-[8%]' },
+                  { srv: SERVICES[1], pos: 'absolute top-[15%] right-[8%]' },
                   { srv: SERVICES[2], pos: 'absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2' },
-                  { srv: SERVICES[3], pos: 'absolute bottom-[18%] left-[8%]' },
-                  { srv: SERVICES[4], pos: 'absolute bottom-[18%] right-[8%]' },
+                  { srv: SERVICES[3], pos: 'absolute bottom-[15%] left-[8%]' },
+                  { srv: SERVICES[4], pos: 'absolute bottom-[15%] right-[8%]' },
+                  { srv: SERVICES[5], pos: 'absolute bottom-[4%] left-1/2 -translate-x-1/2' },
                 ].map(({ srv, pos }) => (
                   <div key={srv.id} className={pos}>
                     <MenuButton service={{ ...srv, title: t.services[srv.id as keyof typeof t.services]?.title || srv.title }}
