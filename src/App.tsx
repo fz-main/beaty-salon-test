@@ -278,7 +278,7 @@ export default function App() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 60 }}
               transition={{ duration: 1, ease: 'easeOut' }}
-              className="absolute inset-0 pointer-events-auto overflow-y-auto flex items-center justify-center px-6 py-20"
+              className="absolute inset-0 pointer-events-auto overflow-y-auto flex flex-col px-6 py-20"
             >
               <button
                 onClick={() => setStage(STAGES.MENU)}
@@ -329,8 +329,8 @@ export default function App() {
               {/* Contacts - bottom of About */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 1 }}
-                className="absolute bottom-0 left-0 right-0 pointer-events-auto z-10"
-                style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%)' }}
+                className="w-full mt-10 pointer-events-auto"
+                style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}
               >
                 <div className="px-6 md:px-12 py-5 flex flex-col items-center gap-1 text-center">
                   <div className="font-monument text-[9px] tracking-[0.25em] text-[#e5d3b3] uppercase mb-1">Kontakty</div>
