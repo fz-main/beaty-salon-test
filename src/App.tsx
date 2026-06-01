@@ -204,33 +204,18 @@ export default function App() {
               exit={{ opacity: 0 }} transition={{ duration: 0.8 }}
               className="absolute inset-0 pointer-events-auto"
             >
-              {/* Contacts - centered */}
+              {/* Contacts - desktop only */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 1 }}
-                className="absolute bottom-28 left-1/2 -translate-x-1/2 w-full max-w-2xl px-6 pointer-events-auto z-10 hidden lg:block"
+                className="absolute bottom-28 left-1/2 -translate-x-1/2 w-full max-w-2xl px-6 pointer-events-auto z-10"
+                style={{ display: 'none' }}
               >
-                <div className="flex flex-col items-center gap-1 text-center">
-                  <div className="font-monument text-[9px] tracking-[0.25em] text-[#e5d3b3] uppercase mb-1">Kontakty</div>
-                  <div className="font-montreal text-xs text-white/80">Praha 1, Nové Město, V Jámě 1, Dům u Nováků</div>
-                  <div className="font-montreal text-xs text-white/80 flex flex-wrap justify-center gap-x-2">
-                    <a href="tel:+420776771771" className="hover:text-[#e5d3b3] transition-colors">+420 776 771 771</a>
-                    <span className="text-white/30">·</span>
-                    <a href="mailto:Beautyart.praha@gmail.com" className="hover:text-[#e5d3b3] transition-colors">Beautyart.praha@gmail.com</a>
-                  </div>
-                  <div className="flex items-center gap-5 mt-1">
-                    <a href="https://www.facebook.com/groups/4789557447823536" target="_blank" rel="noopener noreferrer"
-                      className="font-monument text-[9px] tracking-widest text-white/60 hover:text-[#e5d3b3] transition-colors uppercase">Facebook</a>
-                    <span className="text-white/20">·</span>
-                    <a href="https://www.instagram.com/salon_praha" target="_blank" rel="noopener noreferrer"
-                      className="font-monument text-[9px] tracking-widest text-white/60 hover:text-[#e5d3b3] transition-colors uppercase">Instagram</a>
-                  </div>
-                </div>
               </motion.div>
 
               {/* О нас / discover scroll hint - bottom center */}
               <motion.div
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1, duration: 1 }}
-                className="absolute bottom-6 left-1/2 -translate-x-1/2 flex-col items-center pointer-events-auto z-10 cursor-pointer hidden lg:flex"
+                className="absolute bottom-6 left-1/2 -translate-x-1/2 flex-col items-center pointer-events-auto z-10 cursor-pointer" style={{ display: "none" }}
                 onClick={() => setStage(STAGES.ABOUT)}
               >
                 <span className="font-monument text-[8px] uppercase tracking-[0.3em] text-[#a3a3a3] mb-2">{t.aboutLabel}</span>
