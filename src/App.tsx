@@ -241,8 +241,8 @@ export default function App() {
               </motion.div>
 
               {/* Mobile + Tablet */}
-              <div className="flex lg:hidden flex-col h-full overflow-y-auto">
-                <div className="flex flex-col items-center justify-center flex-1 gap-5 px-8 pt-16 pb-4">
+              <div className="flex lg:hidden flex-col h-full">
+                <div className="flex flex-col items-center justify-center flex-1 gap-5 px-8 pt-16 pb-4 overflow-y-auto">
                   {SERVICES.map((srv) => (
                     <MenuButton key={srv.id} service={{ ...srv, title: t.services[srv.id as keyof typeof t.services]?.title || srv.title }}
                       onClick={() => handleServiceClick(srv)} enterLabel={t.enterModule} />
