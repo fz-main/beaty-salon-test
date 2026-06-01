@@ -139,6 +139,15 @@ export default function App() {
         <header className="absolute top-0 left-0 w-full px-6 py-5 md:px-8 md:py-8 flex justify-between items-center z-50 mix-blend-difference">
           <div className="font-monument text-[10px] md:text-xs tracking-[0.2em]">Salon Beauty Art</div>
           <div className="flex items-center gap-3 md:gap-4 pointer-events-auto">
+            {/* О НАС — только мобилка, в хедере */}
+            {stage === STAGES.MENU && (
+              <button
+                onClick={() => setStage(STAGES.ABOUT)}
+                className="lg:hidden font-monument text-[9px] tracking-widest text-white/60 hover:text-[#e5d3b3] transition-colors uppercase"
+              >
+                {t.aboutLabel}
+              </button>
+            )}
             {/* Lang switcher */}
             <div className="flex items-center gap-1">
               {langs.map((l) => (
@@ -198,7 +207,7 @@ export default function App() {
               {/* Contacts - centered */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 1 }}
-                className="absolute bottom-28 left-1/2 -translate-x-1/2 w-full max-w-2xl px-6 pointer-events-auto z-10"
+                className="absolute bottom-28 left-1/2 -translate-x-1/2 w-full max-w-2xl px-6 pointer-events-auto z-10 hidden lg:block"
               >
                 <div className="flex flex-col items-center gap-1 text-center">
                   <div className="font-monument text-[9px] tracking-[0.25em] text-[#e5d3b3] uppercase mb-1">Kontakty</div>
@@ -221,7 +230,7 @@ export default function App() {
               {/* О нас / discover scroll hint - bottom center */}
               <motion.div
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1, duration: 1 }}
-                className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-auto z-10 cursor-pointer"
+                className="absolute bottom-6 left-1/2 -translate-x-1/2 flex-col items-center pointer-events-auto z-10 cursor-pointer hidden lg:flex"
                 onClick={() => setStage(STAGES.ABOUT)}
               >
                 <span className="font-monument text-[8px] uppercase tracking-[0.3em] text-[#a3a3a3] mb-2">{t.aboutLabel}</span>
@@ -255,14 +264,7 @@ export default function App() {
                     <a href="https://www.instagram.com/salon_praha" target="_blank" rel="noopener noreferrer"
                       className="font-monument text-[9px] tracking-widest text-white/50 hover:text-[#e5d3b3] transition-colors uppercase">Instagram</a>
                   </div>
-                  <button onClick={() => setStage(STAGES.ABOUT)}
-                    className="mt-3 flex flex-col items-center gap-1 cursor-pointer opacity-60 hover:opacity-100 transition-opacity">
-                    <span className="font-monument text-[8px] uppercase tracking-[0.3em] text-[#a3a3a3]">{t.aboutLabel}</span>
-                    <div className="w-[1px] h-4 bg-white/20 overflow-hidden relative">
-                      <motion.div animate={{ y: ['-100%', '100%'] }} transition={{ repeat: Infinity, duration: 1.5, ease: 'linear' }}
-                        className="absolute inset-0 bg-[#e5d3b3]" />
-                    </div>
-                  </button>
+
                 </div>
               </div>
               {/* Desktop */}
