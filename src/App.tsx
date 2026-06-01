@@ -312,7 +312,7 @@ export default function App() {
                   <img
                     src="/beaty-salon-test/natalia-owner.png"
                     alt="Наталья Драгунчик"
-                    className="w-64 md:w-80 object-contain drop-shadow-2xl"
+                    className="w-36 md:w-80 object-contain drop-shadow-2xl"
                   />
                 </motion.div>
 
