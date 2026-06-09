@@ -137,7 +137,7 @@ export default function App() {
 
         {/* HEADER */}
         <header className="absolute top-0 left-0 w-full px-6 py-5 md:px-8 md:py-8 flex justify-between items-center z-50 mix-blend-difference">
-          <div className="font-monument text-[10px] md:text-xs tracking-[0.2em]">Salon Beauty Art</div>
+          <div className="font-monument text-[10px] md:text-xs tracking-[0.2em]">Beauty Studio</div>
           <div className="flex items-center gap-3 md:gap-4 pointer-events-auto">
             {/* О НАС — только мобилка, в хедере */}
             {stage === STAGES.MENU && (
@@ -236,9 +236,9 @@ export default function App() {
                 <div className="flex flex-col items-center gap-1 text-center px-6 py-5"
                   style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
                   <div className="font-monument text-[8px] tracking-[0.25em] text-[#e5d3b3] uppercase mb-1">Kontakty</div>
-                  <div className="font-montreal text-[10px] text-white/70">Praha 1, Nové Město, V Jámě 1, Dům u Nováků</div>
+                  <div className="font-montreal text-[10px] text-white/70"></div>
                   <div className="font-montreal text-[10px] text-white/70 flex flex-wrap justify-center gap-x-2">
-                    <a href="tel:+420776771771" className="hover:text-[#e5d3b3] transition-colors">+420 776 771 771</a>
+                    <a href="tel:+420776771771" className="hover:text-[#e5d3b3] transition-colors">+420 000 000 000</a>
                     <span className="text-white/30">·</span>
                     <a href="mailto:Beautyart.praha@gmail.com" className="hover:text-[#e5d3b3] transition-colors">Beautyart.praha@gmail.com</a>
                   </div>
@@ -335,9 +335,9 @@ export default function App() {
               >
                 <div className="px-6 md:px-12 py-5 flex flex-col items-center gap-1 text-center">
                   <div className="font-monument text-[9px] tracking-[0.25em] text-[#e5d3b3] uppercase mb-1">Kontakty</div>
-                  <div className="font-montreal text-xs text-white/80">Praha 1, Nové Město, V Jámě 1, Dům u Nováků</div>
+                  <div className="font-montreal text-xs text-white/80"></div>
                   <div className="font-montreal text-xs text-white/80 flex flex-wrap justify-center gap-x-2">
-                    <a href="tel:+420776771771" className="hover:text-[#e5d3b3] transition-colors">+420 776 771 771</a>
+                    <a href="tel:+420776771771" className="hover:text-[#e5d3b3] transition-colors">+420 000 000 000</a>
                     <span className="text-white/30">·</span>
                     <a href="mailto:Beautyart.praha@gmail.com" className="hover:text-[#e5d3b3] transition-colors">Beautyart.praha@gmail.com</a>
                   </div>
