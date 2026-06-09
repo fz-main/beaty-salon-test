@@ -8,34 +8,6 @@ import ThreeScene from './components/ThreeScene';
 import ServiceDetail from './components/ServiceDetail';
 import MenuButton from './components/MenuButton';
 
-// Dummy component for transition video – replace with your actual implementation if needed
-function TransitionVideo({ url, onEnded, bgVideoRef }: {
-  url: string; onEnded: () => void; bgVideoRef: React.RefObject<HTMLVideoElement | null>;
-}) {
-  const ref = useRef<HTMLVideoElement>(null);
-  useEffect(() => {
-    const video = ref.current;
-    if (!video) return;
-    const bgVideo = bgVideoRef.current;
-    if (bgVideo) {
-      bgVideo.currentTime = 0;
-      bgVideo.play().catch(() => {});
-    }
-    video.play().then(() => {}).catch(() => onEnded()); // Added a fallback for playback errors
-  }, [url, onEnded, bgVideoRef]); // Added url to dependencies
-
-  const handleTimeUpdate = () => {
-    const video = ref.current;
-    const bgVideo = bgVideoRef.current;
-    if (video && bgVideo) {
-      bgVideo.currentTime = video.currentTime;
-    }
-  };
-
-  return <video ref={ref} src={url} muted playsInline onEnded={onEnded} onTimeUpdate={handleTimeUpdate} className="w-full h-full object-cover" />;
-}
-
-
 export default function App() {
   const [lang, setLang] = useState<Lang>('cs');
   const t = translations[lang];
@@ -61,22 +33,14 @@ export default function App() {
 
   const handleServiceClick = (service: Service) => {
     setActiveService(service);
-    // Ensure we only set transition URL if it exists to avoid errors
-    setTransitionUrl(service.transition || '');
-    // Use the transition video as background for the service detail stage
-    setBgVideoUrl(service.transition || '');
-    // Show the transition overlay
-    if (service.transition) { // Only show transition if a URL is provided
-      setShowTransition(true);
-    } else {
-      // If no transition video, directly move to service detail
-      setStage(STAGES.SERVICE_DETAIL);
-    }
+    setTransitionUrl(service.transition);
+    setBgVideoUrl(service.transition);
+    setShowTransition(true);
   };
 
   const handleBack = () => {
     setIsTransitioning(true);
-    setBgVideoUrl(''); // Clear background video
+    setBgVideoUrl('');
     setStage(STAGES.MENU);
     setTimeout(() => {
       setActiveService(null);
@@ -93,6 +57,7 @@ export default function App() {
       else if (stage === STAGES.MENU && e.deltaY < 0) { setStage(STAGES.INTRO); lastScrollTime.current = now; }
       else if (stage === STAGES.MENU && e.deltaY > 0) { setStage(STAGES.ABOUT); lastScrollTime.current = now; }
       else if (stage === STAGES.ABOUT && e.deltaY < 0) { setStage(STAGES.MENU); lastScrollTime.current = now; }
+
     };
     let touchStartY = 0;
     const handleTouchStart = (e: TouchEvent) => { touchStartY = e.touches[0].clientY; };
@@ -105,6 +70,7 @@ export default function App() {
         else if (stage === STAGES.MENU && deltaY < 0) { setStage(STAGES.INTRO); lastScrollTime.current = now; }
         else if (stage === STAGES.MENU && deltaY > 0) { setStage(STAGES.ABOUT); lastScrollTime.current = now; }
         else if (stage === STAGES.ABOUT && deltaY < 0) { setStage(STAGES.MENU); lastScrollTime.current = now; }
+
       }
     };
     window.addEventListener('wheel', handleWheel);
@@ -128,14 +94,14 @@ export default function App() {
   const langs: Lang[] = ['cs', 'en', 'de'];
 
   return (
-    <div className="w-screen h-screen bg-[#0a0a0a] text-[#f8f5f2] overflow-hidden relative selection:bg-[#e5d3b3] selection:text-black">
+    <div className="w-screen h-screen bg-[#0a0a0a] text-white overflow-hidden relative selection:bg-[#e5d3b3] selection:text-black">
 
       {/* PARTICLES */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <ThreeScene stage={stage} activeService={activeService} isTransitioning={isTransitioning} onServiceClick={handleServiceClick} />
       </div>
 
-      {/* BACKGROUND FOR MENU AND SERVICE DETAIL STAGES */}
+      {/* ДЕВУШКА — фон меню */}
       {(stage === STAGES.MENU || stage === STAGES.SERVICE_DETAIL) && (
         <div
           className="absolute inset-0 z-[1] pointer-events-none"
@@ -148,7 +114,7 @@ export default function App() {
         </div>
       )}
 
-      {/* BACKGROUND VIDEO FOR TRANSITION */}
+      {/* ФОНОВОЕ ВИДЕО ПЕРЕХОДА */}
       {bgVideoUrl && stage === STAGES.SERVICE_DETAIL && (
         <div className="absolute inset-0 z-[2] pointer-events-none overflow-hidden" style={{ transform: 'scale(1.15)' }}>
           <video ref={bgVideoRef} src={bgVideoUrl} muted playsInline className="w-full h-full object-cover" style={{ filter: 'blur(20px)' }} />
@@ -156,7 +122,7 @@ export default function App() {
         </div>
       )}
 
-      {/* TRANSITION VIDEO OVERLAY */}
+      {/* ВИДЕО-ПЕРЕХОД */}
       <AnimatePresence>
         {showTransition && transitionUrl && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}
@@ -166,15 +132,14 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* UI ELEMENTS */}
+      {/* UI */}
       <div className="absolute inset-0 z-10 pointer-events-none">
 
         {/* HEADER */}
         <header className="absolute top-0 left-0 w-full px-6 py-5 md:px-8 md:py-8 flex justify-between items-center z-50 mix-blend-difference">
-          {/* Removed brand name "Salon Beauty Art" */}
-          <div className="font-monument text-[10px] md:text-xs tracking-[0.2em]"></div>
+          <div className="font-monument text-[10px] md:text-xs tracking-[0.2em]">Salon Beauty Art</div>
           <div className="flex items-center gap-3 md:gap-4 pointer-events-auto">
-            {/* ABOUT BUTTON - only for mobile, in header */}
+            {/* О НАС — только мобилка, в хедере */}
             {stage === STAGES.MENU && (
               <button
                 onClick={() => setStage(STAGES.ABOUT)}
@@ -183,7 +148,7 @@ export default function App() {
                 {t.aboutLabel}
               </button>
             )}
-            {/* Language switcher */}
+            {/* Lang switcher */}
             <div className="flex items-center gap-1">
               {langs.map((l) => (
                 <button
@@ -197,14 +162,13 @@ export default function App() {
                 </button>
               ))}
             </div>
-            {/* Removed city name "Prague" */}
-            <div className="font-montreal text-[10px] md:text-xs uppercase tracking-widest"></div>
+            <div className="font-montreal text-[10px] md:text-xs uppercase tracking-widest">Prague</div>
           </div>
         </header>
 
         <AnimatePresence mode="wait">
 
-          {/* INTRO STAGE */}
+          {/* INTRO */}
           {stage === STAGES.INTRO && (
             <motion.div key="intro"
               exit={{ opacity: 0, filter: 'blur(20px)', scale: 1.1 }}
@@ -212,7 +176,7 @@ export default function App() {
               className="absolute inset-0 flex flex-col items-center justify-center px-4"
             >
               <div className="overflow-hidden flex flex-wrap justify-center">
-                {''.split('').map((char, i) => ( // Replaced "BEAUTY ART" with a placeholder
+                {'BEAUTY ART'.split('').map((char, i) => (
                   <motion.span key={i} custom={i} variants={letterVariants} initial="hidden" animate="visible"
                     className="text-[16vw] sm:text-[14vw] md:text-[12vw] font-editorial leading-none tracking-tighter">
                     {char}
@@ -234,13 +198,13 @@ export default function App() {
             </motion.div>
           )}
 
-          {/* MENU STAGE */}
+          {/* MENU */}
           {stage === STAGES.MENU && !isTransitioning && !showTransition && (
             <motion.div key="menu" initial={{ opacity: 0 }} animate={{ opacity: 1 }}
               exit={{ opacity: 0 }} transition={{ duration: 0.8 }}
               className="absolute inset-0 pointer-events-auto"
             >
-              {/* Desktop Contacts - Hidden */}
+              {/* Contacts - desktop only */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 1 }}
                 className="absolute bottom-28 left-1/2 -translate-x-1/2 w-full max-w-2xl px-6 pointer-events-auto z-10"
@@ -248,7 +212,7 @@ export default function App() {
               >
               </motion.div>
 
-              {/* Discover Scroll Hint - Bottom Center */}
+              {/* О нас / discover scroll hint - bottom center */}
               <motion.div
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1, duration: 1 }}
                 className="absolute bottom-6 left-1/2 -translate-x-1/2 flex-col items-center pointer-events-auto z-10 cursor-pointer" style={{ display: "none" }}
@@ -261,7 +225,7 @@ export default function App() {
                 </div>
               </motion.div>
 
-              {/* Mobile + Tablet Layout */}
+              {/* Mobile + Tablet */}
               <div className="flex lg:hidden flex-col h-full">
                 <div className="flex flex-col items-center justify-center flex-1 gap-5 px-8 pt-16 pb-4 overflow-y-auto">
                   {SERVICES.map((srv) => (
@@ -269,13 +233,26 @@ export default function App() {
                       onClick={() => handleServiceClick(srv)} enterLabel={t.enterModule} />
                   ))}
                 </div>
-                {/* Mobile Contacts Section - Removed */}
                 <div className="flex flex-col items-center gap-1 text-center px-6 py-5"
                   style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
-                  <div className="font-monument text-[8px] tracking-[0.25em] text-[#e5d3b3] uppercase mb-1"></div>
+                  <div className="font-monument text-[8px] tracking-[0.25em] text-[#e5d3b3] uppercase mb-1">Kontakty</div>
+                  <div className="font-montreal text-[10px] text-white/70">Praha 1, Nové Město, V Jámě 1, Dům u Nováků</div>
+                  <div className="font-montreal text-[10px] text-white/70 flex flex-wrap justify-center gap-x-2">
+                    <a href="tel:+420776771771" className="hover:text-[#e5d3b3] transition-colors">+420 776 771 771</a>
+                    <span className="text-white/30">·</span>
+                    <a href="mailto:Beautyart.praha@gmail.com" className="hover:text-[#e5d3b3] transition-colors">Beautyart.praha@gmail.com</a>
                   </div>
+                  <div className="flex items-center gap-4 mt-1">
+                    <a href="https://www.facebook.com/groups/4789557447823536" target="_blank" rel="noopener noreferrer"
+                      className="font-monument text-[9px] tracking-widest text-white/50 hover:text-[#e5d3b3] transition-colors uppercase">Facebook</a>
+                    <span className="text-white/20">·</span>
+                    <a href="https://www.instagram.com/salon_praha" target="_blank" rel="noopener noreferrer"
+                      className="font-monument text-[9px] tracking-widest text-white/50 hover:text-[#e5d3b3] transition-colors uppercase">Instagram</a>
+                  </div>
+
+                </div>
               </div>
-              {/* Desktop Layout */}
+              {/* Desktop */}
               <div className="hidden lg:block w-full h-full">
                 {[
                   { srv: SERVICES[0], pos: 'absolute top-[15%] left-[8%]' },
@@ -295,7 +272,7 @@ export default function App() {
             </motion.div>
           )}
 
-          {/* ABOUT STAGE */}
+          {/* ABOUT SECTION */}
           {stage === STAGES.ABOUT && (
             <motion.div key="about"
               initial={{ opacity: 0, y: 60 }}
@@ -320,10 +297,9 @@ export default function App() {
                   transition={{ duration: 1.2, delay: 0.2, ease: 'easeOut' }}
                   className="flex justify-center"
                 >
-                  {/* Replaced specific image with a generic placeholder */}
                   <img
-                    src="/placeholder-image.png" // Use a generic placeholder image
-                    alt="Placeholder"
+                    src="/beaty-salon-test/natalia-owner.png"
+                    alt="Наталья Драгунчик"
                     className="w-36 md:w-80 object-contain drop-shadow-2xl"
                   />
                 </motion.div>
@@ -335,10 +311,8 @@ export default function App() {
                   transition={{ duration: 1.2, delay: 0.4, ease: 'easeOut' }}
                 >
                   <div className="font-monument text-[9px] tracking-[0.3em] text-[#e5d3b3] mb-4 uppercase">{t.aboutLabel}</div>
-                  {/* Replaced owner name with generic title */}
                   <h2 className="font-editorial text-4xl md:text-5xl mb-2 leading-tight">{t.ownerName}</h2>
-                  {/* Replaced founder info with generic placeholder */}
-                  <div className="font-montreal text-xs text-white tracking-widest mb-6">{'Founder · Since 2001 · Salon since 2012'}</div>
+                  <div className="font-montreal text-xs text-white tracking-widest mb-6">{t.aboutFounder}</div>
                   <div className="border-t border-white/10 pt-6 flex flex-col gap-4">
                     <p className="font-montreal text-sm text-white leading-relaxed">
                       {t.aboutBio}
@@ -353,20 +327,33 @@ export default function App() {
                 </motion.div>
               </div>
 
-              {/* Contacts Section at Bottom of About Page - Removed */}
+              {/* Contacts - bottom of About */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 1 }}
                 className="w-full mt-10 pointer-events-auto"
                 style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}
               >
                 <div className="px-6 md:px-12 py-5 flex flex-col items-center gap-1 text-center">
-                  <div className="font-monument text-[9px] tracking-[0.25em] text-[#e5d3b3] uppercase mb-1"></div>
+                  <div className="font-monument text-[9px] tracking-[0.25em] text-[#e5d3b3] uppercase mb-1">Kontakty</div>
+                  <div className="font-montreal text-xs text-white/80">Praha 1, Nové Město, V Jámě 1, Dům u Nováků</div>
+                  <div className="font-montreal text-xs text-white/80 flex flex-wrap justify-center gap-x-2">
+                    <a href="tel:+420776771771" className="hover:text-[#e5d3b3] transition-colors">+420 776 771 771</a>
+                    <span className="text-white/30">·</span>
+                    <a href="mailto:Beautyart.praha@gmail.com" className="hover:text-[#e5d3b3] transition-colors">Beautyart.praha@gmail.com</a>
+                  </div>
+                  <div className="flex items-center gap-5 mt-1">
+                    <a href="https://www.facebook.com/groups/4789557447823536" target="_blank" rel="noopener noreferrer"
+                      className="font-monument text-[9px] tracking-widest text-white/60 hover:text-[#e5d3b3] transition-colors uppercase">Facebook</a>
+                    <span className="text-white/20">·</span>
+                    <a href="https://www.instagram.com/salon_praha" target="_blank" rel="noopener noreferrer"
+                      className="font-monument text-[9px] tracking-widest text-white/60 hover:text-[#e5d3b3] transition-colors uppercase">Instagram</a>
+                  </div>
                 </div>
               </motion.div>
             </motion.div>
           )}
 
-          {/* SERVICE DETAIL STAGE */}
+          {/* SERVICE DETAIL */}
           {stage === STAGES.SERVICE_DETAIL && activeService && !isTransitioning && (
             <ServiceDetail key="detail" activeService={activeService} onBack={handleBack} lang={lang} t={t} />
           )}
@@ -377,3 +364,18 @@ export default function App() {
   );
 }
 
+function TransitionVideo({ url, onEnded, bgVideoRef }: {
+  url: string; onEnded: () => void; bgVideoRef: React.RefObject<HTMLVideoElement | null>;
+}) {
+  const ref = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    const video = ref.current;
+    if (!video) return;
+    if (bgVideoRef.current) { bgVideoRef.current.currentTime = 0; bgVideoRef.current.play().catch(() => {}); }
+    video.play().catch(() => onEnded());
+  }, [onEnded, bgVideoRef]);
+  const handleTimeUpdate = () => {
+    if (ref.current && bgVideoRef.current) bgVideoRef.current.currentTime = ref.current.currentTime;
+  };
+  return <video ref={ref} src={url} muted playsInline onEnded={onEnded} onTimeUpdate={handleTimeUpdate} className="w-full h-full object-cover" />;
+}
