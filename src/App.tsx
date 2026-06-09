@@ -220,12 +220,12 @@ export default function App() {
                 ))}
               </div>
               <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 1 }}
-                className="font-montreal text-[11px] md:text-sm text-[#a3a3a3] tracking-widest uppercase mt-4 text-center">
+                className="font-montreal text-[11px] md:text-sm text-white tracking-widest uppercase mt-4 text-center">
                 {t.tagline}
               </motion.p>
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2, duration: 2 }}
                 className="absolute bottom-8 md:bottom-12 flex flex-col items-center">
-                <span className="font-montreal text-[9px] md:text-[10px] uppercase tracking-[0.3em] text-[#a3a3a3] mb-3 md:mb-4">{t.scrollToEnter}</span>
+                <span className="font-montreal text-[9px] md:text-[10px] uppercase tracking-[0.3em] text-white mb-3 md:mb-4">{t.scrollToEnter}</span>
                 <div className="w-[1px] h-10 md:h-12 bg-white/20 overflow-hidden relative">
                   <motion.div animate={{ y: ['-100%', '100%'] }} transition={{ repeat: Infinity, duration: 1.5, ease: 'linear' }}
                     className="absolute inset-0 bg-white" />
@@ -254,7 +254,7 @@ export default function App() {
                 className="absolute bottom-6 left-1/2 -translate-x-1/2 flex-col items-center pointer-events-auto z-10 cursor-pointer" style={{ display: "none" }}
                 onClick={() => setStage(STAGES.ABOUT)}
               >
-                <span className="font-monument text-[8px] uppercase tracking-[0.3em] text-[#a3a3a3] mb-2">{t.aboutLabel}</span>
+                <span className="font-monument text-[8px] uppercase tracking-[0.3em] text-white mb-2">{t.aboutLabel}</span>
                 <div className="w-[1px] h-8 bg-white/20 overflow-hidden relative">
                   <motion.div animate={{ y: ["-100%", "100%"] }} transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
                     className="absolute inset-0 bg-[#e5d3b3]" />
@@ -338,15 +338,15 @@ export default function App() {
                   {/* Replaced owner name with generic title */}
                   <h2 className="font-editorial text-4xl md:text-5xl mb-2 leading-tight">{t.ownerName}</h2>
                   {/* Replaced founder info with generic placeholder */}
-                  <div className="font-montreal text-xs text-[#a3a3a3] tracking-widest mb-6">{'Founder · Since 2001 · Salon since 2012'}</div>
+                  <div className="font-montreal text-xs text-white tracking-widest mb-6">{'Founder · Since 2001 · Salon since 2012'}</div>
                   <div className="border-t border-white/10 pt-6 flex flex-col gap-4">
-                    <p className="font-montreal text-sm text-[#a3a3a3] leading-relaxed">
+                    <p className="font-montreal text-sm text-white leading-relaxed">
                       {t.aboutBio}
                     </p>
                     <p className="font-montreal text-sm leading-relaxed" style={{ color: '#e5d3b3' }}>
                       {t.aboutMotto}
                     </p>
-                    <div className="font-monument text-[9px] tracking-widest text-[#a3a3a3] mt-2">
+                    <div className="font-monument text-[9px] tracking-widest text-white mt-2">
                       {t.aboutServices}
                     </div>
                   </div>
