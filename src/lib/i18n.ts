@@ -2,8 +2,8 @@ export type Lang = 'cs' | 'en' | 'de';
 
 export const translations = {
   cs: {
-    tagline: 'Beauty salon · Centrum města',
-    scrollToEnter: 'Přejeďte pro vstup',
+    tagline: 'Beauty Salon',
+    scrollToEnter: 'SCROLL TO ENTER',
     back: 'Zpět',
     duration: 'Délka',
     investment: 'Cena',
@@ -52,8 +52,8 @@ export const translations = {
     }
   },
   en: {
-    tagline: 'Beauty salon · City Centre',
-    scrollToEnter: 'Scroll to enter',
+    tagline: 'Beauty Salon',
+    scrollToEnter: 'SCROLL TO ENTER',
     back: 'Back',
     duration: 'Duration',
     investment: 'Investment',
@@ -102,8 +102,8 @@ export const translations = {
     }
   },
   de: {
-    tagline: 'Beauty-Salon · Stadtzentrum',
-    scrollToEnter: 'Scrollen zum Eintreten',
+    tagline: 'Beauty Salon',
+    scrollToEnter: 'SCROLL TO ENTER',
     back: 'Zurück',
     duration: 'Dauer',
     investment: 'Preis',
