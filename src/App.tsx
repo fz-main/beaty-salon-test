@@ -212,7 +212,7 @@ export default function App() {
               className="absolute inset-0 flex flex-col items-center justify-center px-4"
             >
               <div className="overflow-hidden flex flex-wrap justify-center">
-                {'PLACEHOLDER'.split('').map((char, i) => ( // Replaced "BEAUTY ART" with a placeholder
+                {''.split('').map((char, i) => ( // Replaced "BEAUTY ART" with a placeholder
                   <motion.span key={i} custom={i} variants={letterVariants} initial="hidden" animate="visible"
                     className="text-[16vw] sm:text-[14vw] md:text-[12vw] font-editorial leading-none tracking-tighter">
                     {char}
