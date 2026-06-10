@@ -11,8 +11,8 @@ export const translations = {
     yourSpecialist: 'Váš specialista',
     aboutLabel: 'O nás',
     aboutFounder: 'Zakladatelka · Praha od 2001 · Salon od 2012',
-    aboutBio: 'Zkušená mistryně s dlouholetou praxí. Specializuje se na všechny beauty služby.
-    aboutMotto: 'Jsme tu pro vás s profesionální péčí a individuálním přístupem.
+    aboutBio: 'Zkušená mistryně s dlouholetou praxí. Specializuje se na všechny beauty služby.',
+    aboutMotto: 'Jsme tu pro vás s profesionální péčí a individuálním přístupem.',
     aboutServices: 'PERMANENTNÍ MAKEUP · MANIKÚRA · PEDIKÚRA · KOSMETOLOGIE · EPILACE',
     aboutBack: 'Zpět',
     ownerName: 'Founder',
@@ -26,7 +26,7 @@ export const translations = {
     phone: 'Telefon',
     comment: 'Komentář (volitelné)',
     commentPlaceholder: 'Přání nebo dotazy...',
-    gdpr: 'Souhlasím se zpracováním osobních údajů v souladu se zásadami ochrany osobních údajů Beauty Studio.',
+    gdpr: 'Souhlasím se zpracováním osobních údajů v souladu se zásadami ochrany osobních údajů Salon Beauty Art.',
     reservationConfirmed: 'Rezervace potvrzena',
     done: 'Hotovo',
     change: 'Změnit',
@@ -61,8 +61,8 @@ export const translations = {
     yourSpecialist: 'Your specialist',
     aboutLabel: 'About us',
     aboutFounder: 'Founder · Prague since 2001 · Salon since 2012',
-    aboutBio: 'Experienced master with many years of practice. Specializes in all beauty services.
-    aboutMotto: 'We are here to provide the best service for you.
+    aboutBio: 'Experienced master with many years of practice. Specializes in all beauty services.',
+    aboutMotto: 'We are here to provide the best service for you.',
     aboutServices: 'PERMANENT MAKEUP · MANICURE · PEDICURE · COSMETOLOGY · EPILATION',
     aboutBack: 'Back',
     ownerName: 'Founder',
@@ -76,7 +76,7 @@ export const translations = {
     phone: 'Phone',
     comment: 'Comment (optional)',
     commentPlaceholder: 'Wishes or questions...',
-    gdpr: 'I consent to the processing of my personal data in accordance with the privacy policy of Beauty Studio.',
+    gdpr: 'I consent to the processing of my personal data in accordance with the privacy policy of Salon Beauty Art.',
     reservationConfirmed: 'Reservation confirmed',
     done: 'Done',
     change: 'Change',
@@ -111,8 +111,8 @@ export const translations = {
     yourSpecialist: 'Ihre Spezialistin',
     aboutLabel: 'Über uns',
     aboutFounder: 'Gründerin · Prag seit 2001 · Salon seit 2012',
-    aboutBio: 'Erfahrene Meisterin mit langjähriger Praxis. Spezialisiert auf alle Beauty-Dienstleistungen.
-    aboutMotto: 'Wir sind für Sie da mit professioneller Pflege und individueller Betreuung.
+    aboutBio: 'Erfahrene Meisterin mit langjähriger Praxis. Spezialisiert auf alle Beauty-Dienstleistungen.',
+    aboutMotto: 'Wir sind für Sie da mit professioneller Pflege und individueller Betreuung.',
     aboutServices: 'PERMANENT MAKE-UP · MANIKÜRE · PEDIKÜRE · KOSMETOLOGIE · EPILATION',
     aboutBack: 'Zurück',
     ownerName: 'Founder',
@@ -126,7 +126,7 @@ export const translations = {
     phone: 'Telefon',
     comment: 'Kommentar (optional)',
     commentPlaceholder: 'Wünsche oder Fragen...',
-    gdpr: 'Ich stimme der Verarbeitung meiner personenbezogenen Daten gemäß der Datenschutzrichtlinie von Beauty Studio zu.',
+    gdpr: 'Ich stimme der Verarbeitung meiner personenbezogenen Daten gemäß der Datenschutzrichtlinie von Salon Beauty Art zu.',
     reservationConfirmed: 'Reservierung bestätigt',
     done: 'Fertig',
     change: 'Ändern',

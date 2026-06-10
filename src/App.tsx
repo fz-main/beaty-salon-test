@@ -240,7 +240,7 @@ export default function App() {
                   <div className="font-montreal text-[10px] text-white/70 flex flex-wrap justify-center gap-x-2">
                     <a href="tel:+420776771771" className="hover:text-[#e5d3b3] transition-colors">+420 000 000 000</a>
                     <span className="text-white/30">·</span>
-                    <a href="mailto:Beautyart.praha@gmail.com" className="hover:text-[#e5d3b3] transition-colors">Beautyart.praha@gmail.com</a>
+                    <a href="mailto:info@beauty.studio" className="hover:text-[#e5d3b3] transition-colors">info@beauty.studio</a>
                   </div>
                   <div className="flex items-center gap-4 mt-1">
                     <a href="https://www.facebook.com/groups/4789557447823536" target="_blank" rel="noopener noreferrer"
@@ -299,7 +299,7 @@ export default function App() {
                 >
                   <img
                     src="/beaty-salon-test/natalia-owner.png"
-                    alt="Наталья Драгунчик"
+                    alt="Founder"
                     className="w-36 md:w-80 object-contain drop-shadow-2xl"
                   />
                 </motion.div>
@@ -339,7 +339,7 @@ export default function App() {
                   <div className="font-montreal text-xs text-white/80 flex flex-wrap justify-center gap-x-2">
                     <a href="tel:+420776771771" className="hover:text-[#e5d3b3] transition-colors">+420 000 000 000</a>
                     <span className="text-white/30">·</span>
-                    <a href="mailto:Beautyart.praha@gmail.com" className="hover:text-[#e5d3b3] transition-colors">Beautyart.praha@gmail.com</a>
+                    <a href="mailto:info@beauty.studio" className="hover:text-[#e5d3b3] transition-colors">info@beauty.studio</a>
                   </div>
                   <div className="flex items-center gap-5 mt-1">
                     <a href="https://www.facebook.com/groups/4789557447823536" target="_blank" rel="noopener noreferrer"
