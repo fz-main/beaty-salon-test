@@ -46,7 +46,7 @@ export const translations = {
     testimonialsTitle: 'Co říkají naši klienti',
     galleryTitle: 'Galerie',
     testimonialsList: [
-      { name: 'Elena Novakova', role: 'Kadeřnictví', text: 'Nejlepší střih, jaký jsem kdy měla! Profesionální přístup a skvělá atmosféra.', avatar: 'https://randomuser.me/api/portraits/women/68.jpg' },
+      { id: 1, name: 'Elena Novakova', role: 'Kadeřnictví', text: 'Nejlepší střih, jaký jsem kdy měla! Profesionální přístup a skvělá atmosféra.', avatar: 'https://randomuser.me/api/portraits/women/68.jpg' },
       { name: 'Martin Dvorak', role: 'Laserová epilace', text: 'Bezbolestné a rychlé. Po pár sezeních jsem úplně bez chloupků. Doporučuji!', avatar: 'https://randomuser.me/api/portraits/men/32.jpg' },
       { name: 'Lucie Kralova', role: 'Endosféra', text: 'Výsledky viditelné hned po první proceduře. Moje postava se zlepšila, cítím se skvěle.', avatar: 'https://randomuser.me/api/portraits/women/45.jpg' },
       { name: 'Petr Svoboda', role: 'Masáž', text: 'Dokonalá relaxace. Uvolnění celého těla, moc děkuji. Určitě se vrátím.', avatar: 'https://randomuser.me/api/portraits/men/22.jpg' },
