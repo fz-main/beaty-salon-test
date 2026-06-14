@@ -16,7 +16,7 @@ interface HelixGalleryProps {
   t: Translations;
 }
 
-export default function HelixGallery({ lang, t }: HelixGalleryProps) {
+export default function HelixGallery({ t }: HelixGalleryProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const total = galleryItems.length;
 

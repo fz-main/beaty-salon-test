@@ -45,12 +45,11 @@ export const translations = {
     masters: {},
     testimonialsTitle: 'Co říkají naši klienti',
     galleryTitle: 'Galerie',
-    testimonialsList: [
-      { name: 'Elena Novakova', role: 'Kadeřnictví', text: 'Nejlepší střih, jaký jsem kdy měla! Profesionální přístup a skvělá atmosféra.', avatar: 'https://randomuser.me/api/portraits/women/68.jpg' },
+    { id: 1, name: 'Elena Novakova', role: 'Kadeřnictví', text: 'Nejlepší střih, jaký jsem kdy měla! Profesionální přístup a skvělá atmosféra.', avatar: 'https://randomuser.me/api/portraits/women/68.jpg' },
       { name: 'Martin Dvorak', role: 'Laserová epilace', text: 'Bezbolestné a rychlé. Po pár sezeních jsem úplně bez chloupků. Doporučuji!', avatar: 'https://randomuser.me/api/portraits/men/32.jpg' },
       { name: 'Lucie Kralova', role: 'Endosféra', text: 'Výsledky viditelné hned po první proceduře. Moje postava se zlepšila, cítím se skvěle.', avatar: 'https://randomuser.me/api/portraits/women/45.jpg' },
       { name: 'Petr Svoboda', role: 'Masáž', text: 'Dokonalá relaxace. Uvolnění celého těla, moc děkuji. Určitě se vrátím.', avatar: 'https://randomuser.me/api/portraits/men/22.jpg' },
-      { name: 'Jana Horvathova', role: 'Manikúra', text: 'Nádherný design a precizní práce. Moje nehty vypadají jako z časopisu!', avatar: 'https://randomuser.me/api/portraits/women/89.jpg' }
+      { name: 'Jana Horvathova', role: 'Manikúra', text: 'Nádherný design a precizní práce. Moje nehty vypadají jako z časopisu!', avatar: 'https://randomuser.me/api/portraits/women/89.jpg' }, 
     ]
   },
   en: {
@@ -97,12 +96,11 @@ export const translations = {
     masters: {},
     testimonialsTitle: 'What our clients say',
     galleryTitle: 'Gallery',
-    testimonialsList: [
-      { name: 'Elena Novakova', role: 'Hairdressing', text: 'The best haircut I have ever had! Professional approach and great atmosphere.', avatar: 'https://randomuser.me/api/portraits/women/68.jpg' },
+    { id: 1, name: 'Elena Novakova', role: 'Hairdressing', text: 'The best haircut I have ever had! Professional approach and great atmosphere.', avatar: 'https://randomuser.me/api/portraits/women/68.jpg' },
       { name: 'Martin Dvorak', role: 'Laser Epilation', text: 'Painless and fast. After a few sessions I am completely hairless. I recommend!', avatar: 'https://randomuser.me/api/portraits/men/32.jpg' },
       { name: 'Lucie Kralova', role: 'Endosphere', text: 'Results visible immediately after the first procedure. My figure improved, I feel great.', avatar: 'https://randomuser.me/api/portraits/women/45.jpg' },
       { name: 'Petr Svoboda', role: 'Massage', text: 'Perfect relaxation. Full body release, thank you very much. I will definitely return.', avatar: 'https://randomuser.me/api/portraits/men/22.jpg' },
-      { name: 'Jana Horvathova', role: 'Manicure', text: 'Beautiful design and precise work. My nails look like from a magazine!', avatar: 'https://randomuser.me/api/portraits/women/89.jpg' }
+      { name: 'Jana Horvathova', role: 'Manicure', text: 'Beautiful design and precise work. My nails look like from a magazine!', avatar: 'https://randomuser.me/api/portraits/women/89.jpg' }, 
     ]
   },
   de: {
@@ -149,12 +147,11 @@ export const translations = {
     masters: {},
     testimonialsTitle: 'Was unsere Kunden sagen',
     galleryTitle: 'Galerie',
-    testimonialsList: [
-      { name: 'Elena Novakova', role: 'Friseur', text: 'Der beste Haarschnitt, den ich je hatte! Professioneller Ansatz und großartige Atmosphäre.', avatar: 'https://randomuser.me/api/portraits/women/68.jpg' },
+    { id: 1, name: 'Elena Novakova', role: 'Friseur', text: 'Der beste Haarschnitt, den ich je hatte! Professioneller Ansatz und großartige Atmosphäre.', avatar: 'https://randomuser.me/api/portraits/women/68.jpg' },
       { name: 'Martin Dvorak', role: 'Laserepilation', text: 'Schmerzfrei und schnell. Nach wenigen Sitzungen bin ich völlig haarlos. Sehr zu empfehlen!', avatar: 'https://randomuser.me/api/portraits/men/32.jpg' },
       { name: 'Lucie Kralova', role: 'Endosphäre', text: 'Ergebnisse sofort nach der ersten Behandlung sichtbar. Meine Figur hat sich verbessert, ich fühle mich großartig.', avatar: 'https://randomuser.me/api/portraits/women/45.jpg' },
       { name: 'Petr Svoboda', role: 'Massage', text: 'Perfekte Entspannung. Ganzkörperentspannung, vielen Dank. Ich werde definitiv wiederkommen.', avatar: 'https://randomuser.me/api/portraits/men/22.jpg' },
-      { name: 'Jana Horvathova', role: 'Maniküre', text: 'Wunderschönes Design und präzise Arbeit. Meine Nägel sehen aus wie aus einer Zeitschrift!', avatar: 'https://randomuser.me/api/portraits/women/89.jpg' }
+      { name: 'Jana Horvathova', role: 'Maniküre', text: 'Wunderschönes Design und präzise Arbeit. Meine Nägel sehen aus wie aus einer Zeitschrift!', avatar: 'https://randomuser.me/api/portraits/women/89.jpg' }, 
     ]
   }
 };

@@ -21,7 +21,7 @@ interface TestimonialsProps {
   t: Translations;
 }
 
-export default function Testimonials({ lang, t }: TestimonialsProps) {
+export default function Testimonials({ t }: TestimonialsProps) {
   const testimonialsData = t.testimonialsList;
   const [activeId, setActiveId] = useState(1);
   const [direction, setDirection] = useState(0);
