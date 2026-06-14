@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import type { Lang, Translations } from '../lib/i18n';
 
 const testimonialsData = [
   { id: 1, name: 'Elena Novakova', role: 'Kadeřnictví', text: 'Nejlepší střih, jaký jsem kdy měla! Profesionální přístup a skvělá atmosféra.', avatar: 'https://randomuser.me/api/portraits/women/68.jpg' },
@@ -17,7 +18,12 @@ const mobilePositions = [
   { margin: '0 15px 20px 0' }, { margin: '10px 5px 15px 25px' }, { margin: '5px 20px 10px 5px' }, { margin: '15px 5px 25px 10px' }, { margin: '0 10px 5px 20px' },
 ];
 
-export default function Testimonials() {
+interface TestimonialsProps {
+  lang: Lang;
+  t: Translations;
+}
+
+export default function Testimonials({ lang, t }: TestimonialsProps) {
   const [activeId, setActiveId] = useState(1);
   const [direction, setDirection] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
@@ -50,7 +56,6 @@ export default function Testimonials() {
     setActiveId(newId);
   };
 
-  // Простая анимация парения с использованием motion-свойств
   const floatingVariants = (index: number) => ({
     initial: { scale: 0, opacity: 0 },
     animate: {
@@ -64,7 +69,7 @@ export default function Testimonials() {
   return (
     <div className="relative w-full mt-20 mb-16" style={{ minHeight: '550px' }}>
       <div className="text-center mb-8">
-        <div className="font-monument text-[9px] tracking-[0.3em] text-[#e5d3b3] uppercase">Co říkají naši klienti</div>
+        <div className="font-monument text-[9px] tracking-[0.3em] text-[#e5d3b3] uppercase">{t.testimonialsTitle}</div>
         <div className="font-editorial text-2xl md:text-3xl text-white mt-1">Real stories, real results</div>
       </div>
 

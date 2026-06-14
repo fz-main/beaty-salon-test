@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import type { Lang, Translations } from '../lib/i18n';
 
 const galleryItems = [
   { id: 1, src: 'https://static.wixstatic.com/media/6e5a68_58ff6be540194d249d9df44ad99c2e83~mv2.jpg/v1/fill/w_858,h_566,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/DSC01966_JPG.jpg', alt: 'Interior 1' },
@@ -10,7 +11,12 @@ const galleryItems = [
   { id: 7, src: 'https://res.cloudinary.com/dfh97tdty/image/upload/v1781347513/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA_%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0_2026-06-13_134202_lbbgme.png', alt: 'Work 6' },
 ];
 
-export default function HelixGallery() {
+interface HelixGalleryProps {
+  lang: Lang;
+  t: Translations;
+}
+
+export default function HelixGallery({ lang, t }: HelixGalleryProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const total = galleryItems.length;
 
@@ -35,6 +41,9 @@ export default function HelixGallery() {
 
   return (
     <div style={{ width: '100%', minHeight: '500px', padding: '40px 0', marginBottom: '20px' }}>
+      <div className="text-center mb-6">
+        <div className="font-monument text-[9px] tracking-[0.3em] text-[#e5d3b3] uppercase">{t.galleryTitle}</div>
+      </div>
       <div style={{ position: 'relative', width: '100%', height: '400px', perspective: '1000px' }} onWheel={handleWheel}>
         {galleryItems.map((item, idx) => (
           <div key={item.id} style={{ position: 'absolute', width: '240px', height: '340px', borderRadius: '20px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.5)', transition: 'transform 0.6s, filter 0.6s, opacity 0.6s', left: 'calc(50% - 120px)', top: 'calc(50% - 170px)', ...getCardStyle(idx) }}>

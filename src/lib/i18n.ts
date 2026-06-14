@@ -33,12 +33,7 @@ export const translations = {
     enterModule: '[ VSTOUPIT ]',
     months: ['Leden','Únor','Březen','Duben','Květen','Červen','Červenec','Srpen','Září','Říjen','Listopad','Prosinec'],
     days: ['Ne','Po','Út','St','Čt','Pá','So'],
-    errors: {
-      firstName: 'Zadejte jméno',
-      lastName: 'Zadejte příjmení',
-      phone: 'Zadejte telefon',
-      gdpr: 'Nutný souhlas'
-    },
+    errors: { firstName: 'Zadejte jméno', lastName: 'Zadejte příjmení', phone: 'Zadejte telefon', gdpr: 'Nutný souhlas' },
     services: {
       hair: { title: 'Kadeřnictví', subtitle: 'Styl & řemeslo', desc: 'Profesionální střihy, barvení AirTouch, balayage, ombré. Prémiové produkty.' },
       laser: { title: 'Laserová epilace', subtitle: 'Trvalé hladkost', desc: 'Diodový laser bez bolesti. Odstranění chloupků na jakékoli části těla.' },
@@ -47,7 +42,9 @@ export const translations = {
       pedicure: { title: 'Pedikúra', subtitle: 'Dokonalé nohy', desc: 'Léčebná i estetická pedikúra. Odstranění kuřích ok, gelové laky, masáž.' },
       massage: { title: 'Masáž', subtitle: 'Tělo i duše', desc: 'Klasické, lávové, sportovní masáže pro uvolnění.' }
     },
-    masters: {}
+    masters: {},
+    testimonialsTitle: 'Co říkají naši klienti',
+    galleryTitle: 'Galerie'
   },
   en: {
     tagline: 'BIBEN GLOW · Quality & calm',
@@ -81,12 +78,7 @@ export const translations = {
     enterModule: '[ ENTER ]',
     months: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
     days: ['Su','Mo','Tu','We','Th','Fr','Sa'],
-    errors: {
-      firstName: 'Enter first name',
-      lastName: 'Enter last name',
-      phone: 'Enter phone',
-      gdpr: 'Consent required'
-    },
+    errors: { firstName: 'Enter first name', lastName: 'Enter last name', phone: 'Enter phone', gdpr: 'Consent required' },
     services: {
       hair: { title: 'Hair Styling', subtitle: 'Style & craft', desc: 'Professional haircuts, AirTouch coloring, balayage, ombré. Premium products.' },
       laser: { title: 'Laser Epilation', subtitle: 'Permanent smoothness', desc: 'Painless diode laser. Hair removal for any body part.' },
@@ -95,7 +87,9 @@ export const translations = {
       pedicure: { title: 'Pedicure', subtitle: 'Perfect feet', desc: 'Medical and aesthetic pedicure. Removal of corns, gel polish, relaxing massage.' },
       massage: { title: 'Massage', subtitle: 'Body & soul', desc: 'Relaxing, sports, hot stone massage for stress relief.' }
     },
-    masters: {}
+    masters: {},
+    testimonialsTitle: 'What our clients say',
+    galleryTitle: 'Gallery'
   },
   de: {
     tagline: 'BIBEN GLOW · Qualität & Ruhe',
@@ -129,12 +123,7 @@ export const translations = {
     enterModule: '[ EINTRETEN ]',
     months: ['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'],
     days: ['So','Mo','Di','Mi','Do','Fr','Sa'],
-    errors: {
-      firstName: 'Vorname eingeben',
-      lastName: 'Nachname eingeben',
-      phone: 'Telefon eingeben',
-      gdpr: 'Zustimmung erforderlich'
-    },
+    errors: { firstName: 'Vorname eingeben', lastName: 'Nachname eingeben', phone: 'Telefon eingeben', gdpr: 'Zustimmung erforderlich' },
     services: {
       hair: { title: 'Haarstyling', subtitle: 'Schnitt & Farbe', desc: 'Professionelle Haarschnitte, AirTouch-Färbung, Balayage, Ombré. Hochwertige Produkte.' },
       laser: { title: 'Laserepilation', subtitle: 'Dauerhafte Glätte', desc: 'Schmerzfreier Diodenlaser. Haarentfernung an jeder Körperstelle.' },
@@ -143,7 +132,9 @@ export const translations = {
       pedicure: { title: 'Pediküre', subtitle: 'Perfekte Füße', desc: 'Ästhetische und medizinische Fußpflege. Entfernung von Hühneraugen, Gellack, entspannende Massage.' },
       massage: { title: 'Massage', subtitle: 'Körper & Seele', desc: 'Entspannungs-, Sport-, Hot-Stone-Massage gegen Stress.' }
     },
-    masters: {}
+    masters: {},
+    testimonialsTitle: 'Was unsere Kunden sagen',
+    galleryTitle: 'Galerie'
   }
 };
 
