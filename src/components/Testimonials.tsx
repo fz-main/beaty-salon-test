@@ -2,14 +2,6 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { Lang, Translations } from '../lib/i18n';
 
-const testimonialsData = [
-  { id: 1, name: 'Elena Novakova', role: 'Kadeřnictví', text: 'Nejlepší střih, jaký jsem kdy měla! Profesionální přístup a skvělá atmosféra.', avatar: 'https://randomuser.me/api/portraits/women/68.jpg' },
-  { id: 2, name: 'Martin Dvorak', role: 'Laserová epilace', text: 'Bezbolestné a rychlé. Po pár sezeních jsem úplně bez chloupků. Doporučuji!', avatar: 'https://randomuser.me/api/portraits/men/32.jpg' },
-  { id: 3, name: 'Lucie Kralova', role: 'Endosféra', text: 'Výsledky viditelné hned po první proceduře. Moje postava se zlepšila, cítím se skvěle.', avatar: 'https://randomuser.me/api/portraits/women/45.jpg' },
-  { id: 4, name: 'Petr Svoboda', role: 'Masáž', text: 'Dokonalá relaxace. Uvolnění celého těla, moc děkuji. Určitě se vrátím.', avatar: 'https://randomuser.me/api/portraits/men/22.jpg' },
-  { id: 5, name: 'Jana Horvathova', role: 'Manikúra', text: 'Nádherný design a precizní práce. Moje nehty vypadají jako z časopisu!', avatar: 'https://randomuser.me/api/portraits/women/89.jpg' },
-];
-
 const desktopPositions = [
   { top: '12%', left: '8%' }, { top: '18%', left: '85%' }, { top: '45%', left: '5%' }, { top: '52%', left: '90%' }, { top: '78%', left: '15%' },
 ];
@@ -27,6 +19,7 @@ export default function Testimonials({ lang, t }: TestimonialsProps) {
   const [activeId, setActiveId] = useState(1);
   const [direction, setDirection] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const testimonialsData = t.testimonialsList; // переведённые данные
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth <= 768);
@@ -35,7 +28,7 @@ export default function Testimonials({ lang, t }: TestimonialsProps) {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  const activeItem = testimonialsData.find(t => t.id === activeId)!;
+  const activeItem = testimonialsData[activeId - 1];
   const total = testimonialsData.length;
 
   const handleAvatarClick = (id: number) => {
@@ -96,31 +89,31 @@ export default function Testimonials({ lang, t }: TestimonialsProps) {
           <button onClick={next} className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 transition flex items-center justify-center text-white text-xl backdrop-blur-sm">→</button>
         </div>
         <div className="flex gap-2 mt-4">
-          {testimonialsData.map((t) => (
-            <button key={t.id} onClick={() => handleAvatarClick(t.id)} className={`w-2 h-2 rounded-full transition-all duration-300 ${t.id === activeId ? 'w-5 bg-[#e5d3b3]' : 'bg-white/40 hover:bg-white/80'}`} />
+          {testimonialsData.map((_, idx) => (
+            <button key={idx} onClick={() => handleAvatarClick(idx + 1)} className={`w-2 h-2 rounded-full transition-all duration-300 ${idx + 1 === activeId ? 'w-5 bg-[#e5d3b3]' : 'bg-white/40 hover:bg-white/80'}`} />
           ))}
         </div>
       </div>
 
       {!isMobile ? (
         <div className="absolute inset-0 pointer-events-none z-20">
-          {testimonialsData.map((t, idx) => {
-            const isActive = t.id === activeId;
+          {testimonialsData.map((item, idx) => {
+            const isActive = idx + 1 === activeId;
             const pos = desktopPositions[idx];
             const size = isActive ? 'w-[90px] h-[90px]' : 'w-[60px] h-[60px]';
             return (
               <motion.div
-                key={t.id}
+                key={idx}
                 className="absolute cursor-pointer pointer-events-auto"
                 style={{ top: pos.top, left: pos.left, transform: 'translate(-50%, -50%)' }}
                 variants={floatingVariants(idx)}
                 initial="initial"
                 animate="animate"
                 whileHover="hover"
-                onClick={() => handleAvatarClick(t.id)}
+                onClick={() => handleAvatarClick(idx + 1)}
               >
                 <div className={`${size} rounded-full overflow-hidden border-2 transition-all duration-300 ${isActive ? 'border-[#e5d3b3] shadow-[0_0_20px_rgba(229,211,179,0.8)]' : 'border-white/30 hover:border-white/60'}`}>
-                  <img src={t.avatar} alt={t.name} className="w-full h-full object-cover" />
+                  <img src={item.avatar} alt={item.name} className="w-full h-full object-cover" />
                 </div>
               </motion.div>
             );
@@ -128,24 +121,24 @@ export default function Testimonials({ lang, t }: TestimonialsProps) {
         </div>
       ) : (
         <div className="relative z-20 mt-10 flex flex-wrap justify-center items-start">
-          {testimonialsData.map((t, idx) => {
-            const isActive = t.id === activeId;
+          {testimonialsData.map((item, idx) => {
+            const isActive = idx + 1 === activeId;
             const size = isActive ? 'w-[70px] h-[70px]' : 'w-[55px] h-[55px]';
             return (
               <motion.div
-                key={t.id}
+                key={idx}
                 className="cursor-pointer"
                 style={mobilePositions[idx]}
                 variants={floatingVariants(idx)}
                 initial="initial"
                 animate="animate"
                 whileHover="hover"
-                onClick={() => handleAvatarClick(t.id)}
+                onClick={() => handleAvatarClick(idx + 1)}
               >
                 <div className={`${size} rounded-full overflow-hidden border-2 transition-all duration-300 ${isActive ? 'border-[#e5d3b3] shadow-[0_0_15px_rgba(229,211,179,0.6)]' : 'border-white/30'}`}>
-                  <img src={t.avatar} alt={t.name} className="w-full h-full object-cover" />
+                  <img src={item.avatar} alt={item.name} className="w-full h-full object-cover" />
                 </div>
-                <div className="text-center text-[10px] text-white/60 mt-1">{t.name.split(' ')[0]}</div>
+                <div className="text-center text-[10px] text-white/60 mt-1">{item.name.split(' ')[0]}</div>
               </motion.div>
             );
           })}
