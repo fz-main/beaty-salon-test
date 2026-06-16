@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import type { Lang, Translations } from '../lib/i18n';
 
 const galleryItems = [
@@ -16,9 +16,13 @@ interface HelixGalleryProps {
   t: Translations;
 }
 
-export default function HelixGallery({ t }: HelixGalleryProps) {
+export default function HelixGallery({ lang, t }: HelixGalleryProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const total = galleryItems.length;
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
 
   const goToNext = () => { if (activeIndex < total - 1) setActiveIndex(activeIndex + 1); };
   const goToPrev = () => { if (activeIndex > 0) setActiveIndex(activeIndex - 1); };
@@ -39,12 +43,61 @@ export default function HelixGallery({ t }: HelixGalleryProps) {
     return { transform: 'translateX(0) translateZ(-200px) rotateY(180deg)', opacity: 0, filter: 'blur(10px)', zIndex: 1 };
   };
 
+  // Drag support for touch and mouse
+  const onPointerDown = (e: React.PointerEvent) => {
+    setIsDragging(true);
+    setStartX(e.clientX);
+    setScrollLeft(activeIndex);
+  };
+
+  const onPointerMove = (e: React.PointerEvent) => {
+    if (!isDragging) return;
+    const deltaX = e.clientX - startX;
+    if (deltaX > 30) { goToPrev(); setIsDragging(false); }
+    else if (deltaX < -30) { goToNext(); setIsDragging(false); }
+  };
+
+  const onPointerUp = () => {
+    setIsDragging(false);
+  };
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+    const handleTouchStart = (e: TouchEvent) => {
+      setIsDragging(true);
+      setStartX(e.touches[0].clientX);
+    };
+    const handleTouchMove = (e: TouchEvent) => {
+      if (!isDragging) return;
+      const deltaX = e.touches[0].clientX - startX;
+      if (deltaX > 30) { goToPrev(); setIsDragging(false); }
+      else if (deltaX < -30) { goToNext(); setIsDragging(false); }
+    };
+    const handleTouchEnd = () => { setIsDragging(false); };
+    container.addEventListener('touchstart', handleTouchStart);
+    container.addEventListener('touchmove', handleTouchMove);
+    container.addEventListener('touchend', handleTouchEnd);
+    return () => {
+      container.removeEventListener('touchstart', handleTouchStart);
+      container.removeEventListener('touchmove', handleTouchMove);
+      container.removeEventListener('touchend', handleTouchEnd);
+    };
+  }, [isDragging, startX]);
+
   return (
     <div style={{ width: '100%', minHeight: '500px', padding: '40px 0', marginBottom: '20px' }}>
       <div className="text-center mb-6">
         <div className="font-monument text-[9px] tracking-[0.3em] text-[#e5d3b3] uppercase">{t.galleryTitle}</div>
       </div>
-      <div style={{ position: 'relative', width: '100%', height: '400px', perspective: '1000px' }} onWheel={handleWheel}>
+      <div
+        ref={containerRef}
+        style={{ position: 'relative', width: '100%', height: '400px', perspective: '1000px', touchAction: 'none' }}
+        onWheel={handleWheel}
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={onPointerUp}
+      >
         {galleryItems.map((item, idx) => (
           <div key={item.id} style={{ position: 'absolute', width: '240px', height: '340px', borderRadius: '20px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.5)', transition: 'transform 0.6s, filter 0.6s, opacity 0.6s', left: 'calc(50% - 120px)', top: 'calc(50% - 170px)', ...getCardStyle(idx) }}>
             <img src={item.src} alt={item.alt} className="w-full h-full object-cover" />
