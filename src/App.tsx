@@ -46,13 +46,19 @@ export default function App() {
 
   useEffect(() => {
     const COOLDOWN = 2500;
+    const aboutContainer = document.querySelector('.overflow-y-auto');
     const handleWheel = (e: WheelEvent) => {
       const now = Date.now();
       if (now - lastScrollTime.current < COOLDOWN) return;
       if (stage === STAGES.INTRO && e.deltaY > 0) { setStage(STAGES.MENU); lastScrollTime.current = now; }
       else if (stage === STAGES.MENU && e.deltaY < 0) { setStage(STAGES.INTRO); lastScrollTime.current = now; }
       else if (stage === STAGES.MENU && e.deltaY > 0) { setStage(STAGES.ABOUT); lastScrollTime.current = now; }
-      else if (stage === STAGES.ABOUT else if (stage === STAGES.ABOUT && e.deltaY < 0) { setStage(STAGES.MENU);else if (stage === STAGES.ABOUT && e.deltaY < 0) { setStage(STAGES.MENU); e.deltaY < 0 else if (stage === STAGES.ABOUT && e.deltaY < 0) { setStage(STAGES.MENU);else if (stage === STAGES.ABOUT && e.deltaY < 0) { setStage(STAGES.MENU); document.querySelector(".overflow-y-auto")?.scrollTop === 0) { setStage(STAGES.MENU); lastScrollTime.current = now; }
+      else if (stage === STAGES.ABOUT && e.deltaY < 0) {
+        if (aboutContainer && aboutContainer.scrollTop === 0) {
+          setStage(STAGES.MENU);
+          lastScrollTime.current = now;
+        }
+      }
     };
     let touchStartY = 0;
     const handleTouchStart = (e: TouchEvent) => { touchStartY = e.touches[0].clientY; };
@@ -64,7 +70,12 @@ export default function App() {
         if (stage === STAGES.INTRO && deltaY > 0) { setStage(STAGES.MENU); lastScrollTime.current = now; }
         else if (stage === STAGES.MENU && deltaY < 0) { setStage(STAGES.INTRO); lastScrollTime.current = now; }
         else if (stage === STAGES.MENU && deltaY > 0) { setStage(STAGES.ABOUT); lastScrollTime.current = now; }
-        else if (stage === STAGES.ABOUT else if (stage === STAGES.ABOUT && deltaY < 0) { setStage(STAGES.MENU);else if (stage === STAGES.ABOUT && deltaY < 0) { setStage(STAGES.MENU); deltaY < 0 else if (stage === STAGES.ABOUT && deltaY < 0) { setStage(STAGES.MENU);else if (stage === STAGES.ABOUT && deltaY < 0) { setStage(STAGES.MENU); document.querySelector(".overflow-y-auto")?.scrollTop === 0) { setStage(STAGES.MENU); lastScrollTime.current = now; }
+        else if (stage === STAGES.ABOUT && deltaY < 0) {
+          if (aboutContainer && aboutContainer.scrollTop === 0) {
+            setStage(STAGES.MENU);
+            lastScrollTime.current = now;
+          }
+        }
       }
     };
     window.addEventListener('wheel', handleWheel);
