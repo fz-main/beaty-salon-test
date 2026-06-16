@@ -42,7 +42,7 @@ export const translations = {
       pedicure: { title: 'Pedikúra', subtitle: 'Dokonalé nohy', desc: 'Léčebná i estetická pedikúra. Odstranění kuřích ok, gelové laky, masáž.' },
       massage: { title: 'Masáž', subtitle: 'Tělo i duše', desc: 'Klasické, lávové, sportovní masáže pro uvolnění.' }
     },
-    masters: {},
+    masters: { hair: [{ name: "Kateřina Nováková", role: "Master stylist", exp: "8 let", photo: "" }], laser: [{ name: "Petra Dvořáková", role: "Laser specialist", exp: "5 let", photo: "" }], endosphere: [{ name: "Lucie Horáková", role: "Terapeut", exp: "6 let", photo: "" }], manicure: [{ name: "Eva Svobodová", role: "Nail designer", exp: "7 let", photo: "" }], pedicure: [{ name: "Jana Procházková", role: "Pedicure expert", exp: "9 let", photo: "" }], massage: [{ name: "Michaela Černá", role: "Masérka", exp: "10 let", photo: "" }] },
     testimonialsTitle: 'Co říkají naši klienti',
     galleryTitle: 'Galerie',
     testimonialsList: [
@@ -94,7 +94,7 @@ export const translations = {
       pedicure: { title: 'Pedicure', subtitle: 'Perfect feet', desc: 'Medical and aesthetic pedicure. Removal of corns, gel polish, relaxing massage.' },
       massage: { title: 'Massage', subtitle: 'Body & soul', desc: 'Relaxing, sports, hot stone massage for stress relief.' }
     },
-    masters: {},
+    masters: { hair: [{ name: "Kateřina Nováková", role: "Master stylist", exp: "8 let", photo: "" }], laser: [{ name: "Petra Dvořáková", role: "Laser specialist", exp: "5 let", photo: "" }], endosphere: [{ name: "Lucie Horáková", role: "Terapeut", exp: "6 let", photo: "" }], manicure: [{ name: "Eva Svobodová", role: "Nail designer", exp: "7 let", photo: "" }], pedicure: [{ name: "Jana Procházková", role: "Pedicure expert", exp: "9 let", photo: "" }], massage: [{ name: "Michaela Černá", role: "Masérka", exp: "10 let", photo: "" }] },
     testimonialsTitle: 'What our clients say',
     galleryTitle: 'Gallery',
     testimonialsList: [
@@ -146,7 +146,7 @@ export const translations = {
       pedicure: { title: 'Pediküre', subtitle: 'Perfekte Füße', desc: 'Ästhetische und medizinische Fußpflege. Entfernung von Hühneraugen, Gellack, entspannende Massage.' },
       massage: { title: 'Massage', subtitle: 'Körper & Seele', desc: 'Entspannungs-, Sport-, Hot-Stone-Massage gegen Stress.' }
     },
-    masters: {},
+    masters: { hair: [{ name: "Kateřina Nováková", role: "Master stylist", exp: "8 let", photo: "" }], laser: [{ name: "Petra Dvořáková", role: "Laser specialist", exp: "5 let", photo: "" }], endosphere: [{ name: "Lucie Horáková", role: "Terapeut", exp: "6 let", photo: "" }], manicure: [{ name: "Eva Svobodová", role: "Nail designer", exp: "7 let", photo: "" }], pedicure: [{ name: "Jana Procházková", role: "Pedicure expert", exp: "9 let", photo: "" }], massage: [{ name: "Michaela Černá", role: "Masérka", exp: "10 let", photo: "" }] },
     testimonialsTitle: 'Was unsere Kunden sagen',
     galleryTitle: 'Galerie',
     testimonialsList: [
