@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import type { Lang, Translations } from '../lib/i18n';
+import type { Translations } from '../lib/i18n';
 
 const galleryItems = [
   { id: 1, src: 'https://static.wixstatic.com/media/6e5a68_58ff6be540194d249d9df44ad99c2e83~mv2.jpg/v1/fill/w_858,h_566,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/DSC01966_JPG.jpg', alt: 'Interior 1' },
@@ -12,11 +12,10 @@ const galleryItems = [
 ];
 
 interface HelixGalleryProps {
-  lang: Lang;
   t: Translations;
 }
 
-export default function HelixGallery({ lang, t }: HelixGalleryProps) {
+export default function HelixGallery({ t }: HelixGalleryProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const total = galleryItems.length;
   const containerRef = useRef<HTMLDivElement>(null);
@@ -47,7 +46,6 @@ export default function HelixGallery({ lang, t }: HelixGalleryProps) {
     return { transform: 'translateX(0) translateZ(-200px) rotateY(180deg)', opacity: 0, filter: 'blur(10px)', zIndex: 1 };
   };
 
-  // Touch events for mobile
   const onTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
     isSwiping.current = true;
@@ -89,7 +87,6 @@ export default function HelixGallery({ lang, t }: HelixGalleryProps) {
           </div>
         ))}
       </div>
-      {/* Кнопки-стрелки */}
       <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', marginTop: '20px' }}>
         <button
           onClick={goToPrev}
