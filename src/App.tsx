@@ -14,7 +14,7 @@ import { AdminPage } from './pages/admin';
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/beaty-salon-test">
       <Routes>
         <Route path="/" element={<MainApp />} />
         <Route path="/admin" element={<AdminPage />} />
