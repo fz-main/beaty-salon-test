@@ -11,7 +11,6 @@ interface Props {
   onCancel?: () => void;
 }
 
-const DAYS = ['Ne', 'Po', 'Út', 'St', 'Čt', 'Pá', 'So'];
 
 export const BookingForm: React.FC<Props> = ({
   serviceId, serviceName, durationMinutes, onSuccess, onCancel,
@@ -19,7 +18,7 @@ export const BookingForm: React.FC<Props> = ({
   const {
     slots, selectedDate, selectedTime,
     minDate, maxDate, isLoading, error,
-    setSelectedDate, setSelectedTime, refreshSlots,
+    setSelectedDate, setSelectedTime,
   } = useBookingSlots({ duration: durationMinutes });
 
   const [form, setForm] = useState({ customer_name: '', customer_email: '', customer_phone: '', notes: '' });
